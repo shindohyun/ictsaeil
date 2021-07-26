@@ -30,7 +30,7 @@
 		<!-- Contents -->
 		<div class="contents">
 			<div style="margin: auto">
-				Main
+				My Page
 			</div>
 		</div>
 	</div>
