@@ -5,6 +5,37 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ICTSaeil</title>
+	<style>
+	html {
+		margin:0;
+		padding:0;
+	   	height:100%;
+	   	display:flex;
+	   	flex-direction: column;
+	}
+	body {
+		margin:0;
+		padding:0;
+		height:100%;
+		min-height:100%;
+		position:relative;
+		padding-bottom:100px;
+		display:flex;
+		flex-direction: column;
+	}
+	.container {
+		display: flex;
+		height:100%;
+	}	
+	.contents {
+		display: flex;
+		width: 100%;
+		height: 100%;
+	}
+	.contents-wrap {
+		margin: auto;
+	}
+	</style>
 </head>
 <body>
 	<tiles:insertAttribute name="header"/>
@@ -22,36 +53,3 @@
 	<tiles:insertAttribute name="footer"/>
 </body>
 </html>
-
-
-<style>
-html {
-	margin:0;
-	padding:0;
-   	height:100%;
-   	display:flex;
-   	flex-direction: column;
-}
-body {
-	margin:0;
-	padding:0;
-	height:100%;
-	min-height:100%;
-	position:relative;
-	padding-bottom:100px;
-	display:flex;
-	flex-direction: column;
-}
-.container {
-	display: flex;
-	height:100%;
-}	
-.contents {
-	display: flex;
-	width: 100%;
-	height: 100%;
-}
-.contents-wrap {
-	margin: auto;
-}
-</style>

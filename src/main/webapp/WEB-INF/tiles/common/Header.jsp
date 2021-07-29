@@ -1,15 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<header>
-	<h1>대전배재대ICT융합새일센터</h1><br>
-	<div class="menu">
-		<button class="beforeAuth white-button" onclick="onClickSignup()">Signup</button>
-		<button class="beforeAuth green-button" onclick="onClickSignin()">Signin</button>
-		<button class="afterAuth white-button" onclick="onClickMyPage()">My Page</button>
-		<button class="afterAuth red-button" onclick="onClickSignout()">Signout</button>
-	</div>
-</header>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <script>
 const isAuth = false
@@ -88,3 +77,13 @@ header .menu button{
 	background: #c84343;
 }
 </style>
+
+<header>
+	<h1>대전배재대ICT융합새일센터</h1><br>
+	<div class="menu">
+		<button class="beforeAuth white-button" onclick="onClickSignup()">Signup</button>
+		<button class="beforeAuth green-button" onclick="onClickSignin()">Signin</button>
+		<button class="afterAuth white-button" onclick="onClickMyPage()">My Page</button>
+		<button class="afterAuth red-button" onclick="onClickSignout()">Signout</button>
+	</div>
+</header>
