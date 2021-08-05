@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="https://code.jquery.com/jquery-3.6.0.js" 
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous">
+</script>
+
 <script>
 /* 페이지 요청 방식1. location.href
 function onClickSearchMember(){
@@ -59,6 +63,34 @@ function onClickSearchMember(){
 	document.body.appendChild(form)
 	form.submit()	
 }
+
+function onClickRestApi(){
+	var data={
+		name: '김현아'
+	}
+	
+	$.ajax({
+   		type: 'PUT',
+		url: '/api/users/1',
+		//data: data,
+		data: JSON.stringify(data),
+		contentType:'application/json; charset=utf-8',
+		contentLength: JSON.stringify(data).length,
+		success: function(data, status, xhr) {
+			console.log('success!')
+		},
+		error : function(xhr, status, error){
+			console.log('error!')
+		},
+		complete: function(xhr, status){
+			console.log('complete!')
+		}
+   	});
+	
+	/* data: JSON.stringify(data),
+	contentType:'application/json; charset=utf-8',
+	contentLength: JSON.stringify(data).length, */
+}
 </script>
 
 Main
@@ -66,3 +98,5 @@ Main
 <input type="text" id="name" placeholder="name">
 <input type="text" id="age" placeholder="age">
 <button onclick="onClickSearchMember()">Search Member</button>
+<br/>
+<button onclick="onClickRestApi()">CALL REST API</button>
