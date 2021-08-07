@@ -2,6 +2,8 @@ package com.ictsaeil.sample.controller;
 
 import java.util.HashMap;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +21,14 @@ import com.ictsaeil.sample.payload.RequestUser;
 public class ApiController {
 	
 	@GetMapping("users")
-	public void getUsers() {
+	public ResponseEntity getUsers() {
 		System.out.println("GET /api/users");
+		
+		// 요청 성공
+		String body = "BODY DATA: USER LIST";
+		HttpStatus status = HttpStatus.OK;
+		
+		return new ResponseEntity<>(body, status);
 	}
 	
 	@GetMapping("users/count")
