@@ -4,17 +4,16 @@
 </script>
 
 <script>
-/* 페이지 요청 방식1. location.href
-function onClickSearchMember(){
+// 페이지 요청 방식1. location.href
+/*function onClickSearchMember(){
 	var name = document.getElementById("name").value
 	var age = document.getElementById("age").value
 	
 	location.href="/member?name="+name+"&age="+age
-}
-*/
+}*/
 
-/* 페이지 요청 방식2. Form Submit
-function onClickSearchMember(){
+// 페이지 요청 방식2. Form Submit
+/*function onClickSearchMember(){
 	var name = document.getElementById("name").value
 	var age = document.getElementById("age").value
 	
@@ -36,8 +35,7 @@ function onClickSearchMember(){
 	
 	document.body.appendChild(form)
 	form.submit()	
-}
-*/
+}*/
 
 // 페이지 요청 방식2. Form Submit - post
 function onClickSearchMember(){
@@ -65,31 +63,29 @@ function onClickSearchMember(){
 }
 
 function onClickRestApi(){
-	var data={
-		name: '김현아'
-	}
+	//var data={
+	//	name: '김현아',
+	//}
 	
 	$.ajax({
-   		type: 'PUT',
-		url: '/api/users/1',
+   		type: 'GET',
+		url: '/api/users',
 		//data: data,
-		data: JSON.stringify(data),
-		contentType:'application/json; charset=utf-8',
-		contentLength: JSON.stringify(data).length,
+		//data: JSON.stringify(data),	
+		//contentType:'application/json; charset=utf-8',
+		//contentLength: JSON.stringify(data).length, 
 		success: function(data, status, xhr) {
-			console.log('success!')
+			console.log("data: " + data + ", status: " + status)
+			console.log(xhr)
 		},
 		error : function(xhr, status, error){
-			console.log('error!')
+			console.log("status: " + status + ", error: " + error)
+			console.log(xhr)
 		},
 		complete: function(xhr, status){
-			console.log('complete!')
+			console.log("complete!")
 		}
    	});
-	
-	/* data: JSON.stringify(data),
-	contentType:'application/json; charset=utf-8',
-	contentLength: JSON.stringify(data).length, */
 }
 </script>
 
