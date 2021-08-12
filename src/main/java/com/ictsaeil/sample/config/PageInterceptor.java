@@ -10,6 +10,14 @@ public class PageInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		System.out.println("[preHandle]" + request.getRequestURI());
+		
+		// 마이페이지 이동 요청의 경우 컨트롤러를 실행하지 않고 로그인 페이지로 redirect 시킨다.
+		// false를 반환하면 요청 경로의 컨트롤러를 실행하지 않는다.
+		/*if(request.getRequestURI().equals("/my-page")) {
+			response.sendRedirect("/signin");
+			return false;
+		}*/
+		
 		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}
 
