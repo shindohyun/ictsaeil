@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<script 
+	src="https://code.jquery.com/jquery-3.6.0.min.js" 
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+	crossorigin="anonymous">
+</script>	
 <script>
 const isAuth = false
 
 window.onload = function(){
+	var locale = getCookie("locale")
+	$("#select_locale").val(locale).prop("selected", true)
+	
 	var elements = []
 	
 	if(isAuth) { elements = document.getElementsByClassName("beforeAuth") }
@@ -29,6 +36,22 @@ function onClickSignout(){
 function onClickMyPage(){
 	location.href="/my-page"
 }
+
+
+function onChangeLocale(value){
+	setCookie('locale', value)
+	location.reload()
+}
+
+function getCookie(key){
+	var value = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+	return value? value[2] : null;
+}
+
+function setCookie(key, value) {
+  	document.cookie = key + '=' + value + '; path=/';
+}
+
 </script>
 
 <style>
@@ -81,6 +104,12 @@ header .menu button{
 <header>
 	<h1>대전배재대ICT융합새일센터</h1><br>
 	<div class="menu">
+		<select id="select_locale" onchange="onChangeLocale(this.value)">
+			<option value="ko">한국어</option>
+			<option value="en">영어</option>
+			<option value="zh">중국어</option>
+			<option value="ja">일본어</option>
+		</select>
 		<button class="beforeAuth white-button" onclick="onClickSignup()">Signup</button>
 		<button class="beforeAuth green-button" onclick="onClickSignin()">Signin</button>
 		<button class="afterAuth white-button" onclick="onClickMyPage()">My Page</button>
