@@ -1,9 +1,12 @@
 package com.ictsaeil.sample.controller;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +23,9 @@ import com.ictsaeil.sample.service.UserService;
 @RequestMapping("/")
 public class PageController {
 	@Autowired
+	MessageSource messageSource;
+	
+	@Autowired
 	UserService userService;
 	
 	@Autowired
@@ -28,6 +34,18 @@ public class PageController {
 	@GetMapping("")
 	public ModelAndView main() {
 		ModelAndView mv = new ModelAndView("Main");
+		
+		Locale.setDefault(Locale.ROOT);
+		System.out.println(messageSource.getMessage("name", new String[] {}, "name", Locale.getDefault()));
+		System.out.println(messageSource.getMessage("name", new String[] {}, "이름", Locale.KOREA));
+		System.out.println(messageSource.getMessage("name", new String[] {}, "name", Locale.US));
+		System.out.println(messageSource.getMessage("name", new String[] {}, "名称", Locale.CHINA));
+		System.out.println(messageSource.getMessage("name", new String[] {}, "名前", Locale.JAPAN));
+		
+		Locale currentLocale = LocaleContextHolder.getLocale();
+		System.out.println(messageSource.getMessage("name", new String[] {}, "", currentLocale));
+		System.out.println(messageSource.getMessage("hello", new String[] {"도현"}, "", currentLocale));
+		
 		return mv;
 	}
 	

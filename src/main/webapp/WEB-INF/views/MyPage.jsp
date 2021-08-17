@@ -8,5 +8,6 @@ My Page
 		<td><spring:message code="age" text="age"/></td>
 		<td><spring:message code="email" text="email"/></td>
 		<td><spring:message code="mobile" text="mobile"/></td>
+		<td><spring:message code="hello" text="mobile" arguments="도현"/></td>
 	</tr>
 </table>
