@@ -1,0 +1,77 @@
+2021-08-25 00:29:08 DEBUG [com.zaxxer.hikari.pool.HikariPool:421] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2021-08-25 00:29:08 DEBUG [com.zaxxer.hikari.pool.HikariPool:518] - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2021-08-25 00:29:36 INFO [org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin:159] - Application shutdown requested.
+2021-08-25 00:29:36 DEBUG [org.springframework.boot.availability.ApplicationAvailabilityBean:77] - Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC
+2021-08-25 00:29:36 DEBUG [org.springframework.context.support.AbstractApplicationContext:1049] - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5773479f, started on Wed Aug 25 00:23:25 KST 2021
+2021-08-25 00:29:36 DEBUG [org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup:365] - Stopping beans in phase 2147483647
+2021-08-25 00:29:36 DEBUG [org.springframework.context.support.DefaultLifecycleProcessor:238] - Bean 'webServerGracefulShutdown' completed its stop procedure
+2021-08-25 00:29:36 DEBUG [org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup:365] - Stopping beans in phase 2147483646
+2021-08-25 00:29:36 DEBUG [org.springframework.context.support.DefaultLifecycleProcessor:238] - Bean 'webServerStartStop' completed its stop procedure
+2021-08-25 00:29:36 DEBUG [org.springframework.jmx.export.MBeanExporter:452] - Unregistering JMX-exposed beans on shutdown
+2021-08-25 00:29:36 DEBUG [org.springframework.jmx.support.MBeanRegistrationSupport:186] - Unregistering JMX-exposed beans
+2021-08-25 00:29:36 INFO [org.apache.tiles.access.TilesAccess:88] - Removing TilesContext for context: org.springframework.web.servlet.view.tiles3.SpringWildcardServletTilesApplicationContext
+2021-08-25 00:29:36 DEBUG [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport:218] - Shutting down ExecutorService 'threadPoolTaskScheduler'
+2021-08-25 00:29:36 INFO [com.zaxxer.hikari.HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+2021-08-25 00:29:36 DEBUG [com.zaxxer.hikari.pool.HikariPool:421] - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+2021-08-25 00:29:36 DEBUG [com.zaxxer.hikari.pool.PoolBase:134] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@438c9737: (connection evicted)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:365] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+1. Connection closed. {executed in 5ms} 
+open connections:  2 3 4 5 6 7 8 9 10 (9)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+1. Connection.close() returned 
+2021-08-25 00:29:36 DEBUG [com.zaxxer.hikari.pool.PoolBase:134] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@1f3fc8c0: (connection evicted)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:365] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+2. Connection closed. {executed in 0ms} 
+open connections:  3 4 5 6 7 8 9 10 (8)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+2. Connection.close() returned 
+2021-08-25 00:29:36 DEBUG [com.zaxxer.hikari.pool.PoolBase:134] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@5e02c2fb: (connection evicted)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:365] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+3. Connection closed. {executed in 1ms} 
+open connections:  4 5 6 7 8 9 10 (7)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+3. Connection.close() returned 
+2021-08-25 00:29:36 DEBUG [com.zaxxer.hikari.pool.PoolBase:134] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6f16f931: (connection evicted)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:365] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+4. Connection closed. {executed in 0ms} 
+open connections:  5 6 7 8 9 10 (6)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+4. Connection.close() returned 
+2021-08-25 00:29:36 DEBUG [com.zaxxer.hikari.pool.PoolBase:134] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@3e2d3db4: (connection evicted)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:365] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+5. Connection closed. {executed in 1ms} 
+open connections:  6 7 8 9 10 (5)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+5. Connection.close() returned 
+2021-08-25 00:29:36 DEBUG [com.zaxxer.hikari.pool.PoolBase:134] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@1a175482: (connection evicted)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:365] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+6. Connection closed. {executed in 0ms} 
+open connections:  7 8 9 10 (4)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+6. Connection.close() returned 
+2021-08-25 00:29:36 DEBUG [com.zaxxer.hikari.pool.PoolBase:134] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@3a63e728: (connection evicted)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:365] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+7. Connection closed. {executed in 0ms} 
+open connections:  8 9 10 (3)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+7. Connection.close() returned 
+2021-08-25 00:29:36 DEBUG [com.zaxxer.hikari.pool.PoolBase:134] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@324f9c5b: (connection evicted)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:365] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+8. Connection closed. {executed in 0ms} 
+open connections:  9 10 (2)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+8. Connection.close() returned 
+2021-08-25 00:29:36 DEBUG [com.zaxxer.hikari.pool.PoolBase:134] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@da2abfe: (connection evicted)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:365] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+9. Connection closed. {executed in 0ms} 
+open connections:  10 (1)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+9. Connection.close() returned 
+2021-08-25 00:29:36 DEBUG [com.zaxxer.hikari.pool.PoolBase:134] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@57fc8ab7: (connection evicted)
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:365] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+10. Connection closed. {executed in 0ms} 
+open connections:  none
+2021-08-25 00:29:36 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:143)
+10. Connection.close() returned 
+2021-08-25 00:29:36 DEBUG [com.zaxxer.hikari.pool.HikariPool:421] - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+2021-08-25 00:29:36 INFO [com.zaxxer.hikari.HikariDataSource:352] - HikariPool-1 - Shutdown completed.

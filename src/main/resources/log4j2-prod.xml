@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="SPRING_LOG_FILE_NAME">spring-log</Property>
+		<Property name="LOG_FILE_NAME">prod-log</Property>
+		<Property name="LAYOUT_PATTERN">%d{yyyy-MM-dd HH:mm:ss} %p [%C:%L] - %m%n</Property>
+	</Properties>
+	
+	<Appenders>	
+		<Console name="CONSOLE_APPENDER" target="SYSTEM_OUT">
+			<PatternLayout pattern="${LAYOUT_PATTERN}" />
+		</Console>
+		<RollingFile name="SPRING_ROLLING_FILE_APPENDER">
+			<FileName>./logs/${SPRING_LOG_FILE_NAME}.log</FileName>
+			<FilePattern>./logs/${SPRING_LOG_FILE_NAME}.%d{yyyyMMddhhmm}.log</FilePattern>
+			<PatternLayout pattern="${LAYOUT_PATTERN}"/>
+			<Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+		</RollingFile>
+		<RollingFile name="ROLLING_FILE_APPENDER">
+			<FileName>./logs/${LOG_FILE_NAME}.log</FileName>
+			<FilePattern>./logs/${LOG_FILE_NAME}.%d{yyyyMMddhhmm}.log</FilePattern>
+			<PatternLayout pattern="${LAYOUT_PATTERN}"/>
+			<Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+		</RollingFile>
+	</Appenders>
+	
+	<Loggers>
+		<Root level="DEBUG">
+			<appender-ref ref="CONSOLE_APPENDER" />
+		</Root>
+		
+		<Logger name="org.springframework" level="DEBUG">
+			<appender-ref ref="SPRING_ROLLING_FILE_APPENDER" />
+		</Logger>
+		
+		<Logger name="com.ictsaeil.sample" level="DEBUG">
+			<appender-ref ref="ROLLING_FILE_APPENDER" />
+		</Logger>
+		
+		
+		<!-- log4jdbc -->
+		<Logger name="jdbc" level="OFF" />
+		<Logger name="jdbc.sqlonly" level="OFF" />
+		<Logger name="jdbc.audit" level="OFF" />
+		<Logger name="jdbc.resultset" level="OFF" />
+		<Logger name="jdbc.connection" level="OFF" />
+	 	<Logger name="jdbc.resultsettable" level="DEBUG" />
+		<Logger name="jdbc.sqltiming" level="DEBUG" /> 
+	</Loggers>
+</Configuration>

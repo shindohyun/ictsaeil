@@ -2,14 +2,22 @@ plugins {
 	id 'org.springframework.boot' version '2.5.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'war'
 }
 
 group = 'com.ictsaeil'
 version = '0.0.1-SNAPSHOT'
+apply plugin: 'war'
 sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
+}
+
+configurations {
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
 }
 
 dependencies {
@@ -21,6 +29,7 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'	
 	implementation group: 'org.apache.tiles', name: 'tiles-jsp', version: '3.0.8'
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 	//implementation 'org.springframework.boot:spring-boot-starter-security'
 	//testImplementation 'org.springframework.security:spring-security-test'
 }

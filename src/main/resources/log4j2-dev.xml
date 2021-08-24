@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="LOG_FILE_NAME">dev-log</Property>
+		<Property name="LAYOUT_PATTERN">%d{yyyy-MM-dd HH:mm:ss} %p [%C:%L] - %m%n</Property>
+	</Properties>
+	
+	<Appenders>	
+		<Console name="CONSOLE_APPENDER" target="SYSTEM_OUT">
+			<PatternLayout pattern="${LAYOUT_PATTERN}" />
+		</Console>
+		<RollingFile name="ROLLING_FILE_APPENDER">
+			<FileName>./logs/${LOG_FILE_NAME}.log</FileName>
+			<FilePattern>./logs/${LOG_FILE_NAME}.%d{yyyyMMddhhmm}.log</FilePattern>
+			<PatternLayout pattern="${LAYOUT_PATTERN}"/>
+			<Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+		</RollingFile>
+	</Appenders>
+	
+	<Loggers>
+		<Root level="DEBUG">
+			<appender-ref ref="CONSOLE_APPENDER" />
+			<appender-ref ref="ROLLING_FILE_APPENDER" />
+		</Root>
+		
+		<Logger name="com.ictsaeil.sample" level="DEBUG"/>
+		
+		<!-- log4jdbc -->
+		<Logger name="jdbc" level="OFF" />
+		<Logger name="jdbc.sqlonly" level="OFF" />
+		<Logger name="jdbc.audit" level="OFF" />
+		<Logger name="jdbc.resultset" level="OFF" />
+		<Logger name="jdbc.connection" level="OFF" />
+	 	<Logger name="jdbc.resultsettable" level="DEBUG" />
+		<Logger name="jdbc.sqltiming" level="DEBUG" /> 
+	</Loggers>
+</Configuration>

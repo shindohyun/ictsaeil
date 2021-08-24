@@ -1,0 +1,214 @@
+2021-08-25 00:24:01 DEBUG [org.springframework.core.log.LogFormatUtils:91] - GET "/product", parameters={}
+2021-08-25 00:24:01 DEBUG [org.springframework.web.servlet.handler.AbstractHandlerMapping:522] - Mapped to com.ictsaeil.sample.controller.PageController#product()
+2021-08-25 00:24:01 DEBUG [org.mybatis.logging.Logger:49] - Creating a new SqlSession
+2021-08-25 00:24:01 DEBUG [org.mybatis.logging.Logger:49] - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@704451bc] was not registered for synchronization because synchronization is not active
+2021-08-25 00:24:01 DEBUG [org.springframework.jdbc.datasource.DataSourceUtils:115] - Fetching JDBC Connection from DataSource
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:161)
+1. Connection.isValid(5) returned true
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyConnection.getAutoCommit(HikariProxyConnection.java:-1)
+1. Connection.getAutoCommit() returned true
+2021-08-25 00:24:01 DEBUG [org.mybatis.logging.Logger:49] - JDBC Connection [HikariProxyConnection@1061237908 wrapping net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@438c9737] will not be managed by Spring
+2021-08-25 00:24:01 DEBUG [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:137] - ==>  Preparing: SELECT * FROM `product`
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyConnection.prepareStatement(ProxyConnection.java:337)
+1. PreparedStatement.new PreparedStatement returned 
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyConnection.prepareStatement(ProxyConnection.java:337)
+1. Connection.prepareStatement(SELECT 
+			*
+		FROM
+			`product`) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@481f1473
+2021-08-25 00:24:01 DEBUG [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:137] - ==> Parameters: 
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:243] -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. SELECT * FROM `product`  {executed in 1 ms}
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. PreparedStatement.execute() returned true
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyStatement.getResultSet(ProxyStatement.java:213)
+1. ResultSet.new ResultSet returned 
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyStatement.getResultSet(ProxyStatement.java:213)
+1. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@2ea09a2a
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.getMetaData(HikariProxyResultSet.java:-1)
+1. ResultSet.getMetaData() returned com.mysql.cj.jdbc.result.ResultSetMetaData@7cbbf7f3 - Field level information: 
+	com.mysql.cj.result.Field@4ae88964[dbName=ictsaeil_dev,tableName=product,originalTableName=product,columnName=IDX,originalColumnName=IDX,mysqlType=3(FIELD_TYPE_INT),sqlType=4,flags= AUTO_INCREMENT PRIMARY_KEY, charsetIndex=63, charsetName=ISO-8859-1]
+	com.mysql.cj.result.Field@7ae4a0c6[dbName=ictsaeil_dev,tableName=product,originalTableName=product,columnName=NAME,originalColumnName=NAME,mysqlType=253(FIELD_TYPE_VARCHAR),sqlType=12,flags=, charsetIndex=33, charsetName=UTF-8]
+	com.mysql.cj.result.Field@503f147a[dbName=ictsaeil_dev,tableName=product,originalTableName=product,columnName=PRICE,originalColumnName=PRICE,mysqlType=3(FIELD_TYPE_INT),sqlType=4,flags=, charsetIndex=63, charsetName=ISO-8859-1]
+	com.mysql.cj.result.Field@739865e1[dbName=ictsaeil_dev,tableName=product,originalTableName=product,columnName=STOCK,originalColumnName=STOCK,mysqlType=3(FIELD_TYPE_INT),sqlType=4,flags=, charsetIndex=63, charsetName=ISO-8859-1]
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.getType(HikariProxyResultSet.java:-1)
+1. ResultSet.getType() returned 1003
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.isClosed(HikariProxyResultSet.java:-1)
+1. ResultSet.isClosed() returned false
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:390] - 
+|----|-----|------|------|
+|idx |name |price |stock |
+|----|-----|------|------|
+|----|-----|------|------|
+
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.next(HikariProxyResultSet.java:-1)
+1. ResultSet.next() returned false
+2021-08-25 00:24:01 DEBUG [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:137] - <==      Total: 0
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.close(HikariProxyResultSet.java:-1)
+1. ResultSet.close() returned void
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyConnection.getMetaData(ProxyConnection.java:380)
+1. Connection.getMetaData() returned com.mysql.cj.jdbc.DatabaseMetaData@22080cbf
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyPreparedStatement.getMoreResults(HikariProxyPreparedStatement.java:-1)
+1. PreparedStatement.getMoreResults() returned false
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyPreparedStatement.getUpdateCount(HikariProxyPreparedStatement.java:-1)
+1. PreparedStatement.getUpdateCount() returned -1
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyStatement.close(ProxyStatement.java:75)
+1. PreparedStatement.close() returned 
+2021-08-25 00:24:01 DEBUG [org.mybatis.logging.Logger:49] - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@704451bc]
+2021-08-25 00:24:01 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyConnection.close(ProxyConnection.java:267)
+1. Connection.clearWarnings() returned 
+2021-08-25 00:24:01 FATAL [com.ictsaeil.sample.service.ProductService:37] - [FATAL]
+2021-08-25 00:24:01 ERROR [com.ictsaeil.sample.service.ProductService:38] - [ERROR]
+2021-08-25 00:24:01 WARN [com.ictsaeil.sample.service.ProductService:39] - [WARN]
+2021-08-25 00:24:01 INFO [com.ictsaeil.sample.service.ProductService:40] - [INFO]
+2021-08-25 00:24:01 DEBUG [com.ictsaeil.sample.service.ProductService:41] - [DEBUG]
+2021-08-25 00:24:01 DEBUG [org.springframework.web.servlet.view.ContentNegotiatingViewResolver:349] - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2021-08-25 00:24:01 DEBUG [org.springframework.web.servlet.view.AbstractView:309] - View name 'Product', model {products=[]}
+2021-08-25 00:24:01 DEBUG [org.apache.tiles.impl.BasicTilesContainer:213] - Render request received for definition 'Product'
+2021-08-25 00:24:01 DEBUG [org.springframework.web.servlet.FrameworkServlet:1131] - Completed 200 OK
+2021-08-25 00:24:02 DEBUG [org.springframework.core.log.LogFormatUtils:91] - GET "/product", parameters={}
+2021-08-25 00:24:02 DEBUG [org.springframework.web.servlet.handler.AbstractHandlerMapping:522] - Mapped to com.ictsaeil.sample.controller.PageController#product()
+2021-08-25 00:24:02 DEBUG [org.mybatis.logging.Logger:49] - Creating a new SqlSession
+2021-08-25 00:24:02 DEBUG [org.mybatis.logging.Logger:49] - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@14c5504] was not registered for synchronization because synchronization is not active
+2021-08-25 00:24:02 DEBUG [org.springframework.jdbc.datasource.DataSourceUtils:115] - Fetching JDBC Connection from DataSource
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:161)
+1. Connection.isValid(5) returned true
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyConnection.getAutoCommit(HikariProxyConnection.java:-1)
+1. Connection.getAutoCommit() returned true
+2021-08-25 00:24:02 DEBUG [org.mybatis.logging.Logger:49] - JDBC Connection [HikariProxyConnection@1146014537 wrapping net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@438c9737] will not be managed by Spring
+2021-08-25 00:24:02 DEBUG [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:137] - ==>  Preparing: SELECT * FROM `product`
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyConnection.prepareStatement(ProxyConnection.java:337)
+1. PreparedStatement.new PreparedStatement returned 
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyConnection.prepareStatement(ProxyConnection.java:337)
+1. Connection.prepareStatement(SELECT 
+			*
+		FROM
+			`product`) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@6ea30a2a
+2021-08-25 00:24:02 DEBUG [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:137] - ==> Parameters: 
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:243] -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. SELECT * FROM `product`  {executed in 0 ms}
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. PreparedStatement.execute() returned true
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyStatement.getResultSet(ProxyStatement.java:213)
+1. ResultSet.new ResultSet returned 
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyStatement.getResultSet(ProxyStatement.java:213)
+1. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@75c02edd
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.getMetaData(HikariProxyResultSet.java:-1)
+1. ResultSet.getMetaData() returned com.mysql.cj.jdbc.result.ResultSetMetaData@16c7b114 - Field level information: 
+	com.mysql.cj.result.Field@24613406[dbName=ictsaeil_dev,tableName=product,originalTableName=product,columnName=IDX,originalColumnName=IDX,mysqlType=3(FIELD_TYPE_INT),sqlType=4,flags= AUTO_INCREMENT PRIMARY_KEY, charsetIndex=63, charsetName=ISO-8859-1]
+	com.mysql.cj.result.Field@52e598fa[dbName=ictsaeil_dev,tableName=product,originalTableName=product,columnName=NAME,originalColumnName=NAME,mysqlType=253(FIELD_TYPE_VARCHAR),sqlType=12,flags=, charsetIndex=33, charsetName=UTF-8]
+	com.mysql.cj.result.Field@2627e2bd[dbName=ictsaeil_dev,tableName=product,originalTableName=product,columnName=PRICE,originalColumnName=PRICE,mysqlType=3(FIELD_TYPE_INT),sqlType=4,flags=, charsetIndex=63, charsetName=ISO-8859-1]
+	com.mysql.cj.result.Field@dc3b87c[dbName=ictsaeil_dev,tableName=product,originalTableName=product,columnName=STOCK,originalColumnName=STOCK,mysqlType=3(FIELD_TYPE_INT),sqlType=4,flags=, charsetIndex=63, charsetName=ISO-8859-1]
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.getType(HikariProxyResultSet.java:-1)
+1. ResultSet.getType() returned 1003
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.isClosed(HikariProxyResultSet.java:-1)
+1. ResultSet.isClosed() returned false
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:390] - 
+|----|-----|------|------|
+|idx |name |price |stock |
+|----|-----|------|------|
+|----|-----|------|------|
+
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.next(HikariProxyResultSet.java:-1)
+1. ResultSet.next() returned false
+2021-08-25 00:24:02 DEBUG [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:137] - <==      Total: 0
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.close(HikariProxyResultSet.java:-1)
+1. ResultSet.close() returned void
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyConnection.getMetaData(ProxyConnection.java:380)
+1. Connection.getMetaData() returned com.mysql.cj.jdbc.DatabaseMetaData@5e731271
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyPreparedStatement.getMoreResults(HikariProxyPreparedStatement.java:-1)
+1. PreparedStatement.getMoreResults() returned false
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyPreparedStatement.getUpdateCount(HikariProxyPreparedStatement.java:-1)
+1. PreparedStatement.getUpdateCount() returned -1
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyStatement.close(ProxyStatement.java:75)
+1. PreparedStatement.close() returned 
+2021-08-25 00:24:02 DEBUG [org.mybatis.logging.Logger:49] - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@14c5504]
+2021-08-25 00:24:02 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyConnection.close(ProxyConnection.java:267)
+1. Connection.clearWarnings() returned 
+2021-08-25 00:24:02 FATAL [com.ictsaeil.sample.service.ProductService:37] - [FATAL]
+2021-08-25 00:24:02 ERROR [com.ictsaeil.sample.service.ProductService:38] - [ERROR]
+2021-08-25 00:24:02 WARN [com.ictsaeil.sample.service.ProductService:39] - [WARN]
+2021-08-25 00:24:02 INFO [com.ictsaeil.sample.service.ProductService:40] - [INFO]
+2021-08-25 00:24:02 DEBUG [com.ictsaeil.sample.service.ProductService:41] - [DEBUG]
+2021-08-25 00:24:02 DEBUG [org.springframework.web.servlet.view.ContentNegotiatingViewResolver:349] - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2021-08-25 00:24:02 DEBUG [org.springframework.web.servlet.view.AbstractView:309] - View name 'Product', model {products=[]}
+2021-08-25 00:24:02 DEBUG [org.apache.tiles.impl.BasicTilesContainer:213] - Render request received for definition 'Product'
+2021-08-25 00:24:02 DEBUG [org.springframework.web.servlet.FrameworkServlet:1131] - Completed 200 OK
+2021-08-25 00:24:08 DEBUG [com.zaxxer.hikari.pool.HikariPool:421] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2021-08-25 00:24:08 DEBUG [com.zaxxer.hikari.pool.HikariPool:518] - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2021-08-25 00:24:10 DEBUG [org.springframework.core.log.LogFormatUtils:91] - GET "/my-page", parameters={}
+2021-08-25 00:24:10 DEBUG [org.springframework.web.servlet.handler.AbstractHandlerMapping:522] - Mapped to com.ictsaeil.sample.controller.PageController#myPage()
+2021-08-25 00:24:10 DEBUG [org.springframework.web.servlet.view.ContentNegotiatingViewResolver:349] - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2021-08-25 00:24:10 DEBUG [org.springframework.web.servlet.view.AbstractView:309] - View name 'MyPage', model {}
+2021-08-25 00:24:10 DEBUG [org.apache.tiles.impl.BasicTilesContainer:213] - Render request received for definition 'MyPage'
+2021-08-25 00:24:10 DEBUG [org.springframework.web.servlet.FrameworkServlet:1131] - Completed 200 OK
+2021-08-25 00:24:11 DEBUG [org.springframework.core.log.LogFormatUtils:91] - GET "/product", parameters={}
+2021-08-25 00:24:11 DEBUG [org.springframework.web.servlet.handler.AbstractHandlerMapping:522] - Mapped to com.ictsaeil.sample.controller.PageController#product()
+2021-08-25 00:24:11 DEBUG [org.mybatis.logging.Logger:49] - Creating a new SqlSession
+2021-08-25 00:24:11 DEBUG [org.mybatis.logging.Logger:49] - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6ac09fb5] was not registered for synchronization because synchronization is not active
+2021-08-25 00:24:11 DEBUG [org.springframework.jdbc.datasource.DataSourceUtils:115] - Fetching JDBC Connection from DataSource
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:161)
+1. Connection.isValid(5) returned true
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyConnection.getAutoCommit(HikariProxyConnection.java:-1)
+1. Connection.getAutoCommit() returned true
+2021-08-25 00:24:11 DEBUG [org.mybatis.logging.Logger:49] - JDBC Connection [HikariProxyConnection@1063119754 wrapping net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@438c9737] will not be managed by Spring
+2021-08-25 00:24:11 DEBUG [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:137] - ==>  Preparing: SELECT * FROM `product`
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyConnection.prepareStatement(ProxyConnection.java:337)
+1. PreparedStatement.new PreparedStatement returned 
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyConnection.prepareStatement(ProxyConnection.java:337)
+1. Connection.prepareStatement(SELECT 
+			*
+		FROM
+			`product`) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@79a8121e
+2021-08-25 00:24:11 DEBUG [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:137] - ==> Parameters: 
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:243] -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. SELECT * FROM `product`  {executed in 0 ms}
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. PreparedStatement.execute() returned true
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyStatement.getResultSet(ProxyStatement.java:213)
+1. ResultSet.new ResultSet returned 
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyStatement.getResultSet(ProxyStatement.java:213)
+1. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@1be635eb
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.getMetaData(HikariProxyResultSet.java:-1)
+1. ResultSet.getMetaData() returned com.mysql.cj.jdbc.result.ResultSetMetaData@75353c15 - Field level information: 
+	com.mysql.cj.result.Field@25649882[dbName=ictsaeil_dev,tableName=product,originalTableName=product,columnName=IDX,originalColumnName=IDX,mysqlType=3(FIELD_TYPE_INT),sqlType=4,flags= AUTO_INCREMENT PRIMARY_KEY, charsetIndex=63, charsetName=ISO-8859-1]
+	com.mysql.cj.result.Field@1c6556d2[dbName=ictsaeil_dev,tableName=product,originalTableName=product,columnName=NAME,originalColumnName=NAME,mysqlType=253(FIELD_TYPE_VARCHAR),sqlType=12,flags=, charsetIndex=33, charsetName=UTF-8]
+	com.mysql.cj.result.Field@360661d8[dbName=ictsaeil_dev,tableName=product,originalTableName=product,columnName=PRICE,originalColumnName=PRICE,mysqlType=3(FIELD_TYPE_INT),sqlType=4,flags=, charsetIndex=63, charsetName=ISO-8859-1]
+	com.mysql.cj.result.Field@6a8f3699[dbName=ictsaeil_dev,tableName=product,originalTableName=product,columnName=STOCK,originalColumnName=STOCK,mysqlType=3(FIELD_TYPE_INT),sqlType=4,flags=, charsetIndex=63, charsetName=ISO-8859-1]
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.getType(HikariProxyResultSet.java:-1)
+1. ResultSet.getType() returned 1003
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.isClosed(HikariProxyResultSet.java:-1)
+1. ResultSet.isClosed() returned false
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:390] - 
+|----|-----|------|------|
+|idx |name |price |stock |
+|----|-----|------|------|
+|----|-----|------|------|
+
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.next(HikariProxyResultSet.java:-1)
+1. ResultSet.next() returned false
+2021-08-25 00:24:11 DEBUG [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:137] - <==      Total: 0
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyResultSet.close(HikariProxyResultSet.java:-1)
+1. ResultSet.close() returned void
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyConnection.getMetaData(ProxyConnection.java:380)
+1. Connection.getMetaData() returned com.mysql.cj.jdbc.DatabaseMetaData@5dcb1ba3
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyPreparedStatement.getMoreResults(HikariProxyPreparedStatement.java:-1)
+1. PreparedStatement.getMoreResults() returned false
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.HikariProxyPreparedStatement.getUpdateCount(HikariProxyPreparedStatement.java:-1)
+1. PreparedStatement.getUpdateCount() returned -1
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyStatement.close(ProxyStatement.java:75)
+1. PreparedStatement.close() returned 
+2021-08-25 00:24:11 DEBUG [org.mybatis.logging.Logger:49] - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6ac09fb5]
+2021-08-25 00:24:11 INFO [net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator:197] -  com.zaxxer.hikari.pool.ProxyConnection.close(ProxyConnection.java:267)
+1. Connection.clearWarnings() returned 
+2021-08-25 00:24:11 FATAL [com.ictsaeil.sample.service.ProductService:37] - [FATAL]
+2021-08-25 00:24:11 ERROR [com.ictsaeil.sample.service.ProductService:38] - [ERROR]
+2021-08-25 00:24:11 WARN [com.ictsaeil.sample.service.ProductService:39] - [WARN]
+2021-08-25 00:24:11 INFO [com.ictsaeil.sample.service.ProductService:40] - [INFO]
+2021-08-25 00:24:11 DEBUG [com.ictsaeil.sample.service.ProductService:41] - [DEBUG]
+2021-08-25 00:24:11 DEBUG [org.springframework.web.servlet.view.ContentNegotiatingViewResolver:349] - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2021-08-25 00:24:11 DEBUG [org.springframework.web.servlet.view.AbstractView:309] - View name 'Product', model {products=[]}
+2021-08-25 00:24:11 DEBUG [org.apache.tiles.impl.BasicTilesContainer:213] - Render request received for definition 'Product'
+2021-08-25 00:24:11 DEBUG [org.springframework.web.servlet.FrameworkServlet:1131] - Completed 200 OK
+2021-08-25 00:24:38 DEBUG [com.zaxxer.hikari.pool.HikariPool:421] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2021-08-25 00:24:38 DEBUG [com.zaxxer.hikari.pool.HikariPool:518] - HikariPool-1 - Fill pool skipped, pool is at sufficient level.

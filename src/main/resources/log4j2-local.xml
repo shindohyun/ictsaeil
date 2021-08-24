@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="LAYOUT_PATTERN">%d{yyyy-MM-dd HH:mm:ss} %p [%C:%L] - %m%n</Property>
+	</Properties>
+	
+	<Appenders>	
+		<Console name="CONSOLE_APPENDER" target="SYSTEM_OUT">
+			<PatternLayout pattern="${LAYOUT_PATTERN}" />
+		</Console>
+	</Appenders>
+	
+	<Loggers>
+		<Root level="INFO">
+			<appender-ref ref="CONSOLE_APPENDER" />
+		</Root>
+		
+		<Logger name="com.ictsaeil.sample" level="DEBUG"/>
+		
+		<!-- log4jdbc -->
+		<Logger name="jdbc" level="OFF" />
+		<Logger name="jdbc.sqlonly" level="OFF" />
+		<Logger name="jdbc.audit" level="OFF" />
+		<Logger name="jdbc.resultset" level="OFF" />
+		<Logger name="jdbc.connection" level="OFF" />
+	 	<Logger name="jdbc.resultsettable" level="DEBUG" />
+		<Logger name="jdbc.sqltiming" level="DEBUG" /> 
+	</Loggers>
+</Configuration>
