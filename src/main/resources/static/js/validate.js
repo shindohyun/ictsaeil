@@ -46,6 +46,16 @@ function validateName(value){
 }
 
 /**
+ * 나이 검사
+ * 숫자 1~3자리
+ * @return 조건을 충족하면 true, 아니면 false
+ */
+function validateAge(value){
+	const regex = /^[0-9_]{1,3}$/
+	return regex.test(value)
+}
+ 
+/**
  * 이메일 검사
  * @return 조건을 충족하면 true, 아니면 false
  */
