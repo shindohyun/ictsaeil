@@ -44,6 +44,9 @@
 .signup-info-form .submit button:active{
  background: #3c8f3f
 }
+.signup-info-form .submit button:disabled{
+ background: #878a87
+}
 .validation{
  color: red;
  margin: 0px 0px 0px 28px;
