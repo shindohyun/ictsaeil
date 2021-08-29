@@ -132,7 +132,7 @@
 		</tr>
 	</table>
 	<div class="submit">
-		<button>가입하기</button>
+		<button id='signup' disabled>가입하기</button>
 	</div>
 </form>	
 
@@ -144,13 +144,36 @@ $(window).on('load', function(){
 
 	for(let i=0 ; i<elements.length; i++) {
 		var element = elements[i]
-		$('#'+element.id).on('focusout', function(event){
-			onFocusOut(event)
+		$('#'+element.id).on('input', function(event){
+			onInput(event)
 		})
 	}
 })
 
-function onFocusOut(event){
+function changeSubmitStatus(){
+	var elements = document.getElementsByClassName("validation")
+	
+	for(let i=0 ; i<elements.length; i++) {
+		const element = elements[i]
+		if(element.style.display === 'block'){
+			$('#signup').attr('disabled', true)
+			return
+		}
+	}
+	
+	if(isEmpty($('#id').val()) 		||
+		isEmpty($('#pw').val()) 	||
+		isEmpty($('#pw-re').val()) 	||
+		isEmpty($('#name').val()) 	||
+		isEmpty($('#mobile').val())){
+		$('#signup').attr('disabled', true)
+		return
+	}
+	
+	$('#signup').attr('disabled', false)
+}
+
+function onInput(event){
 	const id = event.target.id
 	
 	var info = $('#'+id)
@@ -161,9 +184,7 @@ function onFocusOut(event){
 	var message = ''
 	
 	if((id === 'id' || id === 'pw' || id === 'pw-re' || id === 'name' || id === 'mobile') && isEmpty(value)){
-		if(isEmpty(value)){
-			message = ERROR_REQUIRED 
-		} 
+		message = ERROR_REQUIRED 
 	}
 	else if(id === 'id' && !validateId(value)){
 		message = "아이디는 영문 대소문자, 숫자, 특수문자 '_' 허용 4~12자리 입니다."
@@ -197,5 +218,7 @@ function onFocusOut(event){
 		error.text(message)
 		error.show()
 	}
+	
+	changeSubmitStatus()
 }
 </script>
