@@ -3,51 +3,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>ICTSaeil</title>
-	<style>
-	html {
-		margin:0;
-		padding:0;
-	   	height:100%;
-	   	display:flex;
-	   	flex-direction: column;
-	}
-	body {
-		margin:0;
-		padding:0;
-		height:100%;
-		min-height:100%;
-		position:relative;
-		padding-bottom:100px;
-		display:flex;
-		flex-direction: column;
+<meta charset="UTF-8">
+<title>ICTSaeil</title>
+<style>
+	html,body {
+		margin:0; 
+		padding:0; 
+		width:100%; 
+		height:100%
 	}
 	.container {
 		display: flex;
-		height:100%;
+		min-height: 100%;
 	}	
-	.contents {
-		display: flex;
-		width: 100%;
-		height: 100%;
-	}
-	.contents-wrap {
-		margin: auto;
-	}
-	</style>
+</style>
 </head>
 <body>
 	<tiles:insertAttribute name="header"/>
 	
 	<div class="container">
 		<tiles:insertAttribute name="sidebar"/>
-		
-		<div class="contents">
-			<div class="contents-wrap">
-				<tiles:insertAttribute name="contents"/>
-			</div>
-		</div>
+		<tiles:insertAttribute name="contents"/>
 	</div>
 	
 	<tiles:insertAttribute name="footer"/>

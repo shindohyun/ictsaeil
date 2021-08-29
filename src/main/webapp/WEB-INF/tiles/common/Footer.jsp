@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
 footer {
-	width:100%;
-	height:100px;
-	position:absolute;
-	bottom:0;
+	padding:30px 0;
+	background: #333;
+	color:#fff;
 	background:#265686;
 	text-align: center;
 	color: white;

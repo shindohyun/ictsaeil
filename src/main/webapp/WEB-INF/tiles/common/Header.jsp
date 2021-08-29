@@ -55,14 +55,25 @@ function setCookie(key, value) {
 </script>
 
 <style>
-header {
+header{
 	background:#265686;
 	text-align: center;
-	padding: 50px 50px 10px 50px;
 	color: white;
+	display:inline-block;
+	width: 100%;
+}
+header h1{
+	margin: 0px;
+	padding: 50px 20px 20px 50px;
 }
 header .menu {
+	padding: 14px;
+	display:inline-block;
 	float: right;
+}
+header .menu select{
+	padding: 15px 15px 15px 15px;
+	font-size: 14px;
 }
 header .menu button{
 	padding: 15px 20px 15px 20px;
@@ -102,7 +113,9 @@ header .menu button{
 </style>
 
 <header>
-	<h1>대전배재대ICT융합새일센터</h1><br>
+	<div>
+		<h1>대전배재대ICT융합새일센터</h1>
+	</div>
 	<div class="menu">
 		<select id="select_locale" onchange="onChangeLocale(this.value)">
 			<option value="ko">한국어</option>
