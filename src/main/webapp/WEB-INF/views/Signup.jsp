@@ -56,7 +56,7 @@
 }
 </style>
 
-<form class="signup-info-form">
+<form class="signup-info-form" onsubmit="return onSubmit()">
 	<h1>회원가입</h1>
 	<table>
 		<!-- 아이디 -->
@@ -138,6 +138,8 @@
 
 <script>
 const ERROR_REQUIRED = '필수 항목입니다.'
+var completeCheckId = false
+var checkedId = ''
 
 $(window).on('load', function(){
 	var elements = document.getElementsByClassName("signup-info-input")
@@ -221,4 +223,61 @@ function onInput(event){
 	
 	changeSubmitStatus()
 }
+
+function onSubmit(){
+	const id = $('#id').val()
+	const pw = $('#pw').val()
+	const pwRe = $('#pw-re').val()
+	const name = $('#name').val()
+	const age = $('#age').val()
+	const email = $('#email').val()
+	const mobile = $('#mobile').val()
+	
+	// 아이디 중복검사 여부 및 
+	// 중복검사 완료된 아이디와 현재 입력된 아이디 일치 여부 검사 
+	if(!completeCheckId || id != checkedId){
+		alert('아이디 중복검사를 완료해주세요.')
+		$("#id").focus()
+		return false
+	}
+	
+	// 비밀번호 일치 여부 검사
+	if(pw != pwRe){
+		alert('비밀번호가 일치하지 않습니다.')
+		$("#pw-re").focus()
+		return false
+	}
+	
+	// 필수항목 검사
+	var required = true
+	
+	if(isEmpty(id)){
+		$('#id').focus()
+		required = false
+	}
+	else if(isEmpty(pw)){
+		$('#pw').focus()
+		required = false
+	}
+	else if(isEmpty(pwRe)){
+		$('#pw-re').focus()
+		required = false
+	}
+	else if(isEmpty(name)){
+		$('#name').focus()
+		required = false
+	}
+	else if(isEmpty(mobile)){
+		$('#mobile').focus()
+		required = false
+	}
+	
+	if(required == false) {
+		alert("필수항목을 입력해주세요.")
+		return false
+	}
+	
+	return true
+}
+
 </script>
