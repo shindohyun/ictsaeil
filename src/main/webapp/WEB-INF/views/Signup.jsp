@@ -64,7 +64,7 @@
 			<td><label>*아이디</label></td>
 			<!-- <td><input class="signup-info-input" type="text" id="id" onfocusout="onFocusOut(event)"/></td>  -->
 			<td><input class="signup-info-input" type="text" id="id"/></td>
-			<td><button type="button">중복검사</button></td>
+			<td><button type="button" onclick="onClickCheckId()">중복검사</button></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -280,4 +280,43 @@ function onSubmit(){
 	return true
 }
 
+function onClickCheckId(){
+	const id = $('#id').val()
+	if(id === '') {
+		alert('아이디를 입력해주세요.')
+		return
+	}
+	if(!validateId(id)){
+		return
+	}
+	
+	// 요청 전 초기화
+	completeCheckId = false
+	checkedId = ''
+	
+	const url = '/api/duplication-check/' + id
+	$.ajax({
+		type: 'GET',
+		url: url,
+		dataType: 'JSON',
+		success: function(data, status, xhr){
+			if(status === 'success'){
+				if(data.isDuplicated == false){
+					checkedId = data.requestId
+					completeCheckId = true
+					alert('사용 가능한 아이디 입니다.')	
+				}
+				else{
+					alert('이미 존재하는 아이디 입니다.')	
+				}
+			}
+			else{
+				alert('아이디를 조회할 수 없습니다.')
+			}
+		},
+		error: function(xhr, status, error){
+			alert('서버와의 통신 중 문제가 발생했습니다.(error code: ' + status + ', message: ' + error + ')')
+		}
+	})
+}
 </script>

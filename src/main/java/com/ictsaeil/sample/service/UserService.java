@@ -21,4 +21,12 @@ public class UserService {
 		
 		return userMapper.selectByNameAndAge(paramMap);
 	}
+	
+	public Map<String, Object> duplicationCheckId(String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		int count = userMapper.selectCountById(id);
+		map.put("requestId", id);
+		map.put("isDuplicated", count >= 1 ? true : false);
+		return map;
+	}
 }

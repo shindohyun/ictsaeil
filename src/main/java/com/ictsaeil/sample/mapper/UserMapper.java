@@ -8,4 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper {
 	public List<Map<String, Object>> selectByNameAndAge(Map<String, Object> paramMap);
+	public int selectCountById(String id);
 }

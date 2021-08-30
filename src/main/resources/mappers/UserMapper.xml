@@ -10,4 +10,12 @@
 			`NAME`=#{NAME}
 			AND `AGE`=#{AGE}
 	</select>
+	<select id="selectCountById" parameterType="string" resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			`user`
+		WHERE
+			`ID`=#{ID}
+	</select>
 </mapper>
