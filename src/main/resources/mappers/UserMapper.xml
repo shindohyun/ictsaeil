@@ -18,4 +18,32 @@
 		WHERE
 			`ID`=#{ID}
 	</select>
+	<insert id="insert" parameterType="map">
+		INSERT INTO `user`(
+			`ID`,
+			`PASSWORD`,
+			`NAME`,
+			<if test="AGE != null and AGE != ''">
+			`AGE`,
+			</if>
+			<if test="EMAIL != null and EMAIL != ''">
+			`EMAIL`,
+			</if>
+			`MOBILE`
+		) VALUES (
+			#{ID},
+			#{PASSWORD},
+			#{NAME},
+			<if test="AGE != null and AGE != ''">
+			#{AGE},
+			</if>
+			<if test="EMAIL != null and EMAIL != ''">
+			#{EMAIL},
+			</if>
+			#{MOBILE}
+		)
+		<selectKey resultType="int" keyProperty="IDX" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
 </mapper>

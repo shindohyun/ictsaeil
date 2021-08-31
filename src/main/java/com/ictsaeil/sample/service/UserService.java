@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ictsaeil.sample.mapper.UserMapper;
+import com.ictsaeil.sample.payload.RequestSignup;
 
 @Service
 public class UserService {
@@ -28,5 +29,23 @@ public class UserService {
 		map.put("requestId", id);
 		map.put("isDuplicated", count >= 1 ? true : false);
 		return map;
+	}
+	
+	public int signup(RequestSignup request) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("ID", request.getId());
+		paramMap.put("PASSWORD", request.getPassword());
+		paramMap.put("NAME", request.getName());
+		paramMap.put("AGE", request.getAge());
+		paramMap.put("EMAIL", request.getEmail());
+		paramMap.put("MOBILE", request.getMobile());
+		
+		userMapper.insert(paramMap);
+		
+		if(paramMap.containsKey("IDX")) {
+			return Integer.parseInt(paramMap.get("IDX").toString());
+		}
+		
+		return 0;
 	}
 }

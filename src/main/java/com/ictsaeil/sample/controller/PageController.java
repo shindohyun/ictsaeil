@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ictsaeil.sample.payload.RequestMember;
+import com.ictsaeil.sample.payload.RequestSignup;
 import com.ictsaeil.sample.service.ProductService;
 import com.ictsaeil.sample.service.UserService;
 
@@ -52,6 +55,19 @@ public class PageController {
 	@GetMapping("signup")
 	public ModelAndView signup() {
 		ModelAndView mv = new ModelAndView("Signup");
+		return mv;
+	}
+	
+	@PostMapping("signup-result")
+	public ModelAndView signupResult(@ModelAttribute RequestSignup request) {
+		ModelAndView mv = new ModelAndView("SignupResult");
+		try {
+			userService.signup(request);
+			mv.addObject("message", "회원가입 완료");
+		}catch (Exception e) {
+			e.printStackTrace();
+			mv.addObject("message", "회원가입 실패");
+		}
 		return mv;
 	}
 	

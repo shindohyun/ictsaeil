@@ -56,14 +56,14 @@
 }
 </style>
 
-<form class="signup-info-form" onsubmit="return onSubmit()">
+<form class="signup-info-form" action="/signup-result" method="POST" onsubmit="return onSubmit()">
 	<h1>회원가입</h1>
 	<table>
 		<!-- 아이디 -->
 		<tr>
 			<td><label>*아이디</label></td>
 			<!-- <td><input class="signup-info-input" type="text" id="id" onfocusout="onFocusOut(event)"/></td>  -->
-			<td><input class="signup-info-input" type="text" id="id"/></td>
+			<td><input class="signup-info-input" type="text" id="id" name="id"/></td>
 			<td><button type="button" onclick="onClickCheckId()">중복검사</button></td>
 		</tr>
 		<tr>
@@ -74,7 +74,7 @@
 		<!-- 비밀번호 -->
 		<tr>
 			<td><label>*비밀번호</label></td>
-			<td><input class="signup-info-input" type="password" id="pw"/></td>
+			<td><input class="signup-info-input" type="password" id="pw" name="password"/></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -94,7 +94,7 @@
 		<!-- 이름 -->
 		<tr>
 			<td><label>*이름</label></td>
-			<td><input class="signup-info-input" type="text" id="name"/></td>
+			<td><input class="signup-info-input" type="text" id="name" name="name"/></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -104,7 +104,7 @@
 		<!-- 나이 -->
 		<tr>
 			<td><label>나이</label></td>
-			<td><input class="signup-info-input" type="text" id="age"/></td>
+			<td><input class="signup-info-input" type="text" id="age" name="age"/></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -114,7 +114,7 @@
 		<!-- 이메일 -->
 		<tr>
 			<td><label>이메일</label></td>
-			<td><input class="signup-info-input" type="text" id="email"/></td>
+			<td><input class="signup-info-input" type="text" id="email" name="email"/></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -124,7 +124,7 @@
 		<!-- 전화번호 -->
 		<tr>
 			<td><label>*전화번호</label></td>
-			<td><input class="signup-info-input" type="text" id="mobile"/></td>
+			<td><input class="signup-info-input" type="text" id="mobile" name="mobile"/></td>
 		</tr>
 		<tr>
 			<td></td>
