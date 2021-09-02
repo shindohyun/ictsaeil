@@ -96,7 +96,7 @@ function onClickSignin(){
 		data: JSON.stringify(data),
 		contentType: 'application/json; charset=utf-8',
 		contentLength: JSON.stringify(data).length,
-		dataType: 'JSON', 
+		dataType: 'text', 
 		success: function(data, status, xhr){
 			if(status === 'success'){
 				location.href='/'
