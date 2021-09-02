@@ -2,21 +2,37 @@ package com.ictsaeil.sample.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.ictsaeil.sample.model.User;
 
 public class PageInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		System.out.println("[preHandle]" + request.getRequestURI());
 		
-		// 마이페이지 이동 요청의 경우 컨트롤러를 실행하지 않고 로그인 페이지로 redirect 시킨다.
-		// false를 반환하면 요청 경로의 컨트롤러를 실행하지 않는다.
-		/*if(request.getRequestURI().equals("/my-page")) {
-			response.sendRedirect("/signin");
-			return false;
-		}*/
+		HttpSession session = request.getSession(true);
+		User user = (User)session.getAttribute("USER");
+		
+		// 로그인 페이지 요청 시 현재 세션에 사용자 정보를 검사
+		// 사용자 정보가 존재한다면 메인 페이지로 이동시킨다.
+		if(request.getRequestURI().equals("/signin")) {
+			if(user != null) {
+				response.sendRedirect("/");	
+				return false;
+			}
+		}
+		// 로그인 페이지를 제외한 페이지 요청 시 현재 세션에 사용자 정보를 검사
+		// 사용자 정보가 없다면 로그인 페이지로 이동시킨다.
+		else {
+			if(user == null) {
+				response.sendRedirect("/signin");	
+				return false;
+			}
+		}
 		
 		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}
