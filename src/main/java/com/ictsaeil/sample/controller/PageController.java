@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ictsaeil.sample.model.User;
 import com.ictsaeil.sample.payload.RequestMember;
 import com.ictsaeil.sample.payload.RequestSignup;
 import com.ictsaeil.sample.service.ProductService;
@@ -35,8 +38,11 @@ public class PageController {
 	ProductService productService;
 	
 	@GetMapping("")
-	public ModelAndView main() {
+	public ModelAndView main(HttpSession session) {
 		ModelAndView mv = new ModelAndView("Main");
+		
+		User user = (User)session.getAttribute("USER");
+		mv.addObject("user", user);	
 		
 		Locale.setDefault(Locale.ROOT);
 		System.out.println(messageSource.getMessage("name", new String[] {}, "name", Locale.getDefault()));
@@ -53,14 +59,22 @@ public class PageController {
 	}
 	
 	@GetMapping("signup")
-	public ModelAndView signup() {
+	public ModelAndView signup(HttpSession session) {
 		ModelAndView mv = new ModelAndView("Signup");
+		
+		User user = (User)session.getAttribute("USER");
+		mv.addObject("user", user);	
+		
 		return mv;
 	}
 	
 	@PostMapping("signup-result")
-	public ModelAndView signupResult(@ModelAttribute RequestSignup request) {
+	public ModelAndView signupResult(@ModelAttribute RequestSignup request, HttpSession session) {
 		ModelAndView mv = new ModelAndView("SignupResult");
+		
+		User user = (User)session.getAttribute("USER");
+		mv.addObject("user", user);	
+		
 		try {
 			userService.signup(request);
 			mv.addObject("message", "회원가입 완료");
@@ -72,20 +86,31 @@ public class PageController {
 	}
 	
 	@GetMapping("signin")
-	public ModelAndView signin() {
+	public ModelAndView signin(HttpSession session) {
 		ModelAndView mv = new ModelAndView("Signin");
+		
+		User user = (User)session.getAttribute("USER");
+		mv.addObject("user", user);	
+		
 		return mv;
 	}
 	
 	@GetMapping("my-page")
-	public ModelAndView myPage() {
+	public ModelAndView myPage(HttpSession session) {
 		ModelAndView mv = new ModelAndView("MyPage");
+		
+		User user = (User)session.getAttribute("USER");
+		mv.addObject("user", user);	
+		
 		return mv;
 	}
 	
 	@GetMapping("product")
-	public ModelAndView product() {
+	public ModelAndView product(HttpSession session) {
 		ModelAndView mv = new ModelAndView("Product");
+		
+		User user = (User)session.getAttribute("USER");
+		mv.addObject("user", user);	
 		
 		List<Map<String, Object>> products = productService.products(); 
 	    mv.addObject("products", products);
@@ -131,8 +156,11 @@ public class PageController {
 	
 	// 객체 파라미터 받기 - post
 	@PostMapping("member")
-	public ModelAndView member(@ModelAttribute RequestMember request) {
+	public ModelAndView member(@ModelAttribute RequestMember request, HttpSession session) {
 		ModelAndView mv = new ModelAndView("Member");
+		
+		User user = (User)session.getAttribute("USER");
+		mv.addObject("user", user);	
 		
 		List<Map<String, Object>> member = 
 				userService.searchByNameAndAge(request.getName(), request.getAge()); 

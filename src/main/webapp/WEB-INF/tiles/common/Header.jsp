@@ -5,19 +5,19 @@
 	crossorigin="anonymous">
 </script>	
 <script>
-const isAuth = false
-
 window.onload = function(){
 	var locale = getCookie("locale")
 	$("#select_locale").val(locale).prop("selected", true)
 	
-	var elements = []
-	
-	if(isAuth) { elements = document.getElementsByClassName("beforeAuth") }
-	else { elements = document.getElementsByClassName("afterAuth") }
-
-	for(var i = 0; i < elements.length; i++){
-		elements[i].style.display = "none"
+	var userIdx = "${user.idx}"
+	if(userIdx == null || typeof userIdx === 'undefined' || userIdx === ''){
+		$('.beforeAuth').show()
+		$('.afterAuth').hide()
+	}
+	else{
+		console.log(userIdx)
+		$('.beforeAuth').hide()
+		$('.afterAuth').show()
 	}
 }
 
