@@ -63,10 +63,53 @@
 			<td><div class="checkbox"><input type="checkbox" id="keep"><label for="keep">로그인 상태 유지</label></div></td>
 		</tr>
 		<tr>
-			<td><button>로그인</button></td>
+			<td><button onclick="onClickSignin()">로그인</button></td>
 		</tr>
 		<tr>
 			<td class="service"><a href="#">아이디 찾기</a> | <a href="#">비밀번호 찾기</a> | <a href="/signup">회원가입</a></td>
 		</tr>
 	</table>
 </div>
+<script>
+function onClickSignin(){
+	const id = $('#id').val()
+	const pw = $('#pw').val()
+	
+	if(id == null || id === ''){
+		alert('아이디를 입력해주세요.')
+		return
+	}
+	
+	if(pw == null || pw === ''){
+		alert('비밀번호를 입력해주세요.')
+		return
+	}
+	
+	var data = {
+		username: id,
+		password: pw
+	}
+	
+	$.ajax({
+		type: 'POST',
+		url: '/api/signin',
+		data: JSON.stringify(data),
+		contentType: 'application/json; charset=utf-8',
+		contentLength: JSON.stringify(data).length,
+		dataType: 'JSON', 
+		success: function(data, status, xhr){
+			if(status === 'success'){
+				location.href='/'
+			}
+		},
+		error: function(xhr, status, error){
+			if(xhr.status === 404){
+				alert(xhr.responseText)	
+			}
+			else{
+				alert('서버와의 통신 중 문제가 발생했습니다.(error code: ' + xhr.status + ', message: ' + xhr.responseText + ')')	
+			}
+		}
+	})
+}
+</script>

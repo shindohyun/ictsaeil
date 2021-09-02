@@ -8,12 +8,55 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ictsaeil.sample.mapper.UserMapper;
+import com.ictsaeil.sample.model.User;
+import com.ictsaeil.sample.payload.RequestSignin;
 import com.ictsaeil.sample.payload.RequestSignup;
 
 @Service
 public class UserService {
 	@Autowired
 	UserMapper userMapper;
+	
+	public User signin(String username, String password) {
+		User user = new User();
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("ID", username);
+		paramMap.put("PASSWORD", password);
+		
+		Map<String, Object> map = userMapper.selectByIdAndPassword(paramMap);
+		if(map != null) {
+			if(map.containsKey("IDX")) {
+				user.setIdx(Integer.parseInt(map.get("IDX").toString()));	
+			}
+			
+			if(map.containsKey("ID")){
+				user.setId(map.get("ID").toString());
+			}
+			
+			if(map.containsKey("PASSWORD")) {
+				user.setPassword(map.get("PASSWORD").toString());
+			}
+			
+			if(map.containsKey("NAME")) {
+				user.setName(map.get("NAME").toString());
+			}
+			
+			if(map.containsKey("AGE")) {
+				user.setAge(Integer.parseInt(map.get("AGE").toString()));
+			}
+			
+			if(map.containsKey("EMAIL")) {
+				user.setEmail(map.get("EMAIL").toString());
+			}
+			
+			if(map.containsKey("MOBILE")) {
+				user.setMobile(map.get("MOBILE").toString());
+			}
+		}
+		
+		return user;
+	}
 	
 	public List<Map<String, Object>> searchByNameAndAge(String name, int age){
 		Map<String, Object> paramMap = new HashMap<String, Object>();

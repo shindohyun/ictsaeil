@@ -18,6 +18,15 @@
 		WHERE
 			`ID`=#{ID}
 	</select>
+	<select id="selectByIdAndPassword" parameterType="map" resultType="map">
+		SELECT
+			*
+		FROM
+			`user`
+		WHERE
+			`ID`=#{ID}
+			AND `PASSWORD`=#{PASSWORD}
+	</select>
 	<insert id="insert" parameterType="map">
 		INSERT INTO `user`(
 			`ID`,

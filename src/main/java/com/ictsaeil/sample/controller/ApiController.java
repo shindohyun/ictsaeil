@@ -2,6 +2,9 @@ package com.ictsaeil.sample.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ictsaeil.sample.model.User;
+import com.ictsaeil.sample.payload.RequestSignin;
 import com.ictsaeil.sample.payload.RequestUser;
 import com.ictsaeil.sample.service.UserService;
 
@@ -27,6 +32,25 @@ public class ApiController {
 	
 	@Autowired
 	UserService userService;
+	
+	@PostMapping("/signin")
+	public ResponseEntity signin(@RequestBody RequestSignin request, HttpSession session) {
+		try {
+			User user = userService.signin(request.getUsername(), request.getPassword());
+			
+			if(user == null) {
+				return new ResponseEntity<>("아이디 또는 비밀번호를 확인해주세요.", HttpStatus.NOT_FOUND);
+			}
+			else {
+				session.setAttribute("USER", user);
+				return new ResponseEntity<>(HttpStatus.OK);	
+			}
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+		
 	
 	@GetMapping("duplication-check/{id}")
 	public ResponseEntity duplicationCheckId(@PathVariable("id") String id) {
