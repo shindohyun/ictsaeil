@@ -3,6 +3,7 @@ package com.ictsaeil.sample.payload;
 public class RequestSignin {
 	String username;
 	String password;
+	boolean keep;
 	
 	public String getUsername() {
 		return username;
@@ -15,5 +16,11 @@ public class RequestSignin {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public boolean isKeep() {
+		return keep;
+	}
+	public void setKeep(boolean keep) {
+		this.keep = keep;
 	}
 }

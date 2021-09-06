@@ -74,6 +74,7 @@
 function onClickSignin(){
 	const id = $('#id').val()
 	const pw = $('#pw').val()
+	const keep = $('input:checkbox[id="keep"]').is(":checked")
 	
 	if(id == null || id === ''){
 		alert('아이디를 입력해주세요.')
@@ -87,7 +88,8 @@ function onClickSignin(){
 	
 	var data = {
 		username: id,
-		password: pw
+		password: pw,
+		keep: keep
 	}
 	
 	$.ajax({

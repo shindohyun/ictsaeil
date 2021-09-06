@@ -2,7 +2,9 @@ package com.ictsaeil.sample.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
@@ -34,7 +36,7 @@ public class ApiController {
 	UserService userService;
 	
 	@PostMapping("/signin")
-	public ResponseEntity signin(@RequestBody RequestSignin request, HttpSession session) {
+	public ResponseEntity signin(@RequestBody RequestSignin request, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
 		try {
 			User user = userService.signin(request.getUsername(), request.getPassword());
 			
@@ -42,7 +44,22 @@ public class ApiController {
 				return new ResponseEntity<>("아이디 또는 비밀번호를 확인해주세요.", HttpStatus.NOT_FOUND);
 			}
 			else {
+				HttpSession session = httpServletRequest.getSession(true);
 				session.setAttribute("USER", user);
+				
+				if(request.isKeep()) {
+					final int INTERVAL = 60; // 세션 유지 기간(초)
+					final String SESSION_ID = session.getId();
+					
+					// 로그인 상태 유지를 위해 현재 세션 아이디를 쿠키로 저장한다.
+					Cookie cookie = new Cookie("signin-cookie", SESSION_ID);
+					cookie.setMaxAge(INTERVAL);
+					httpServletResponse.addCookie(cookie);
+					
+					// 사용자 세션 정보를 업데이트 한다.
+					userService.updateSession(user.getIdx(), SESSION_ID, INTERVAL);
+				}
+				
 				return new ResponseEntity<>(HttpStatus.OK);	
 			}
 		}catch (Exception e) {

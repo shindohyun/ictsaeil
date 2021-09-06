@@ -55,4 +55,13 @@
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>
+	<update id="updateSession" parameterType="map">
+		UPDATE 
+			`user`
+		SET
+			`SESSION`=#{SESSION},
+			`SESSION_EXPIRATION_DATE`=DATE_ADD(NOW(), INTERVAL #{INTERVAL} SECOND)
+		WHERE
+			`IDX`=#{IDX}
+	</update>
 </mapper>

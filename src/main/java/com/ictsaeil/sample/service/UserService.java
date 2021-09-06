@@ -17,6 +17,15 @@ public class UserService {
 	@Autowired
 	UserMapper userMapper;
 	
+	public int updateSession(int idx, String session, int interval) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("IDX", idx);
+		paramMap.put("SESSION", session);
+		paramMap.put("INTERVAL", interval);
+		
+		return userMapper.updateSession(paramMap);
+	}
+	
 	public User signin(String username, String password) {
 		User user = new User();
 		

@@ -11,4 +11,5 @@ public interface UserMapper {
 	public int selectCountById(String id);
 	public int insert(Map<String, Object> paramMap);
 	public Map<String, Object> selectByIdAndPassword(Map<String, Object> paramMap);
+	public int updateSession(Map<String, Object> paramMap);
 }
