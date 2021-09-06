@@ -16,10 +16,11 @@ public class PageInterceptor implements HandlerInterceptor {
 		
 		HttpSession session = request.getSession(true);
 		User user = (User)session.getAttribute("USER");
+		String uri = request.getRequestURI();
 		
 		// 로그인 페이지 요청 시 현재 세션에 사용자 정보를 검사
 		// 사용자 정보가 존재한다면 메인 페이지로 이동시킨다.
-		if(request.getRequestURI().equals("/signin")) {
+		if(uri.equals("/signin")) {
 			if(user != null) {
 				response.sendRedirect("/");	
 				return false;
@@ -27,8 +28,10 @@ public class PageInterceptor implements HandlerInterceptor {
 		}
 		// 로그인 페이지를 제외한 페이지 요청 시 현재 세션에 사용자 정보를 검사
 		// 사용자 정보가 없다면 로그인 페이지로 이동시킨다.
+		// 예외: 회원가입 페이지, 아이디 찾기, 비밀번호 찾기
 		else {
-			if(user == null) {
+			if(user == null && 
+				(!uri.equals("/signup"))) {
 				response.sendRedirect("/signin");	
 				return false;
 			}
