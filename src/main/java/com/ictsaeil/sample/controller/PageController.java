@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,14 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 import com.ictsaeil.sample.model.User;
 import com.ictsaeil.sample.payload.RequestMember;
@@ -86,12 +89,20 @@ public class PageController {
 	}
 	
 	@GetMapping("signin")
-	public ModelAndView signin(HttpSession session) {
+	public ModelAndView signin(@CookieValue(value="signin-cookie", required=false) Cookie cookie, HttpSession session) {
+		if(cookie != null) {
+			// 자동 로그인
+			final String sessionId = cookie.getValue();
+			User user = userService.signinBySession(sessionId);
+			
+			if(user != null) {
+				session.setAttribute("USER", user);
+				ModelAndView mv = new ModelAndView("redirect:/");
+				return mv;
+			}
+		}
+		
 		ModelAndView mv = new ModelAndView("Signin");
-		
-		User user = (User)session.getAttribute("USER");
-		mv.addObject("user", user);	
-		
 		return mv;
 	}
 	

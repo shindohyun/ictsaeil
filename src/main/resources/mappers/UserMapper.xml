@@ -64,4 +64,13 @@
 		WHERE
 			`IDX`=#{IDX}
 	</update>
+	<select id="selectBySession" parameterType="string" resultType="map">
+		SELECT
+			*
+		FROM
+			`user`
+		WHERE
+			`SESSION`=#{SESSION}
+			AND `SESSION_EXPIRATION_DATE` >= NOW()
+	</select>
 </mapper>

@@ -17,6 +17,44 @@ public class UserService {
 	@Autowired
 	UserMapper userMapper;
 	
+	public User signinBySession(String session) {
+		User user = new User();
+		
+		HashMap<String, Object> map = (HashMap<String, Object>) userMapper.selectBySession(session);
+		
+		if(map != null) {
+			if(map.containsKey("IDX")) {
+				user.setIdx(Integer.parseInt(map.get("IDX").toString()));	
+			}
+			
+			if(map.containsKey("ID")){
+				user.setId(map.get("ID").toString());
+			}
+			
+			if(map.containsKey("PASSWORD")) {
+				user.setPassword(map.get("PASSWORD").toString());
+			}
+			
+			if(map.containsKey("NAME")) {
+				user.setName(map.get("NAME").toString());
+			}
+			
+			if(map.containsKey("AGE")) {
+				user.setAge(Integer.parseInt(map.get("AGE").toString()));
+			}
+			
+			if(map.containsKey("EMAIL")) {
+				user.setEmail(map.get("EMAIL").toString());
+			}
+			
+			if(map.containsKey("MOBILE")) {
+				user.setMobile(map.get("MOBILE").toString());
+			}
+		}
+		
+		return user;
+	}
+	
 	public int updateSession(int idx, String session, int interval) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("IDX", idx);

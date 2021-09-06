@@ -48,12 +48,13 @@ public class ApiController {
 				session.setAttribute("USER", user);
 				
 				if(request.isKeep()) {
-					final int INTERVAL = 60; // 세션 유지 기간(초)
+					final int INTERVAL = 60*3; // 세션 유지 기간(초)
 					final String SESSION_ID = session.getId();
 					
 					// 로그인 상태 유지를 위해 현재 세션 아이디를 쿠키로 저장한다.
 					Cookie cookie = new Cookie("signin-cookie", SESSION_ID);
 					cookie.setMaxAge(INTERVAL);
+					cookie.setPath("/");
 					httpServletResponse.addCookie(cookie);
 					
 					// 사용자 세션 정보를 업데이트 한다.
