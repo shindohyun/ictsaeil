@@ -70,9 +70,19 @@ public class ApiController {
 	}
 	
 	@PostMapping("/signout")
-	public ResponseEntity signout(HttpSession session) {
+	public ResponseEntity signout(HttpSession session, HttpServletResponse response) {
 		try {
+			// 세션 정보를 제거한다.
+			User user = (User)session.getAttribute("USER");
+			userService.updateSession(user.getIdx(), null, 0);
+			
+			Cookie cookie = new Cookie("signin-cookie", null);
+			cookie.setMaxAge(0);
+			cookie.setPath("/");
+			response.addCookie(cookie);
+						
 			session.setAttribute("USER", null);
+			
 			return new ResponseEntity<>(HttpStatus.OK);
 		}catch(Exception e) {
 			logger.error(e.getMessage());
