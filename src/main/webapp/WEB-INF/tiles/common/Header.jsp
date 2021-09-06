@@ -30,7 +30,23 @@ function onClickSignin(){
 }
 
 function onClickSignout(){
-	location.href="/"
+	$.ajax({
+		type: 'POST',
+		url: '/api/signout',
+		dataType: 'text',
+		success: function(data, status, xhr){
+			if(status === 'success'){
+				alert('로그아웃 되었습니다. 메인화면으로 이동합니다.')
+				location.href="/"
+			}
+			else{
+				alert('로그아웃을 실패했습니다.')
+			}
+		},
+		error: function(xhr, status, error){
+			alert('서버와의 통신 중 문제가 발생했습니다.(error code: ' + status + ', message: ' + error + ')')
+		}
+	})
 }
 
 function onClickMyPage(){

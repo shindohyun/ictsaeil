@@ -50,7 +50,17 @@ public class ApiController {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-		
+	
+	@PostMapping("/signout")
+	public ResponseEntity signout(HttpSession session) {
+		try {
+			session.setAttribute("USER", null);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	@GetMapping("duplication-check/{id}")
 	public ResponseEntity duplicationCheckId(@PathVariable("id") String id) {
