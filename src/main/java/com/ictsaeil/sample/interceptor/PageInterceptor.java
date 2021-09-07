@@ -31,7 +31,7 @@ public class PageInterceptor implements HandlerInterceptor {
 		// 예외: 회원가입 페이지, 아이디 찾기, 비밀번호 찾기
 		else {
 			if(user == null && 
-				(!uri.equals("/signup"))) {
+				(!uri.equals("/signup") && !uri.equals("/inquiryid"))) {
 				response.sendRedirect("/signin");	
 				return false;
 			}

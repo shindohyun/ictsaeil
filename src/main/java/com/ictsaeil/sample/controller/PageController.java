@@ -61,22 +61,21 @@ public class PageController {
 		return mv;
 	}
 	
+	@GetMapping("inquiryid")
+	public ModelAndView inquiryId() {
+		ModelAndView mv = new ModelAndView("InquiryId");
+		return mv;
+	}
+	
 	@GetMapping("signup")
-	public ModelAndView signup(HttpSession session) {
+	public ModelAndView signup() {
 		ModelAndView mv = new ModelAndView("Signup");
-		
-		User user = (User)session.getAttribute("USER");
-		mv.addObject("user", user);	
-		
 		return mv;
 	}
 	
 	@PostMapping("signup-result")
-	public ModelAndView signupResult(@ModelAttribute RequestSignup request, HttpSession session) {
+	public ModelAndView signupResult(@ModelAttribute RequestSignup request) {
 		ModelAndView mv = new ModelAndView("SignupResult");
-		
-		User user = (User)session.getAttribute("USER");
-		mv.addObject("user", user);	
 		
 		try {
 			userService.signup(request);
