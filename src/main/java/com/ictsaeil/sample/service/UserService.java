@@ -17,6 +17,14 @@ public class UserService {
 	@Autowired
 	UserMapper userMapper;
 	
+	public String inquiryId(String name, String mobile) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("NAME", name);
+		paramMap.put("MOBILE", mobile);
+		
+		return userMapper.selectIdByNameAndMobile(paramMap);
+	}
+	
 	public User signinBySession(String session) {
 		User user = null;
 		

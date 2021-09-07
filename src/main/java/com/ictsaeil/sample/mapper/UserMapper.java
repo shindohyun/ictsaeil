@@ -13,4 +13,5 @@ public interface UserMapper {
 	public Map<String, Object> selectByIdAndPassword(Map<String, Object> paramMap);
 	public int updateSession(Map<String, Object> paramMap);
 	public Map<String, Object> selectBySession(String session);
+	public String selectIdByNameAndMobile(Map<String, Object> paramMap);
 }

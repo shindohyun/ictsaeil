@@ -73,4 +73,14 @@
 			`SESSION`=#{SESSION}
 			AND `SESSION_EXPIRATION_DATE` >= NOW()
 	</select>
+	<select id="selectIdByNameAndMobile" parameterType="map" resultType="string">
+		SELECT
+			`ID`
+		FROM
+			`user`
+		WHERE
+			`NAME`=#{NAME}
+			AND `MOBILE`=#{MOBILE}
+		LIMIT 1
+	</select>
 </mapper>

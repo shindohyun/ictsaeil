@@ -1,5 +1,6 @@
 package com.ictsaeil.sample.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ictsaeil.sample.model.User;
+import com.ictsaeil.sample.payload.RequestInquiryId;
 import com.ictsaeil.sample.payload.RequestSignin;
 import com.ictsaeil.sample.payload.RequestUser;
 import com.ictsaeil.sample.service.UserService;
@@ -34,6 +36,24 @@ public class ApiController {
 	
 	@Autowired
 	UserService userService;
+	
+	@PostMapping("/inquiryid")
+	public ResponseEntity inquiryId(@RequestBody RequestInquiryId request) {
+		try {
+			String id = userService.inquiryId(request.getName(), request.getMobile());	
+			if(id == null || id.isEmpty()) {
+				return new ResponseEntity<>("회원 정보를 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
+			}
+			
+			HashMap<String, Object> body = new HashMap<String, Object>();
+			body.put("id", id);
+			
+			return new ResponseEntity<>(body, HttpStatus.OK);
+		} catch(Exception e) {
+			logger.error(e.getMessage());
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	@PostMapping("/signin")
 	public ResponseEntity signin(@RequestBody RequestSignin request, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
