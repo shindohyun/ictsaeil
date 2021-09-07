@@ -66,7 +66,7 @@
 			<td><button onclick="onClickSignin()">로그인</button></td>
 		</tr>
 		<tr>
-			<td class="service"><a href="/inquiryid">아이디 찾기</a> | <a href="#">비밀번호 찾기</a> | <a href="/signup">회원가입</a></td>
+			<td class="service"><a href="/inquiryid">아이디 찾기</a> | <a href="/inquirypassword">비밀번호 찾기</a> | <a href="/signup">회원가입</a></td>
 		</tr>
 	</table>
 </div>

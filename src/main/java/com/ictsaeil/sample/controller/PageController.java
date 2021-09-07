@@ -67,6 +67,12 @@ public class PageController {
 		return mv;
 	}
 	
+	@GetMapping("inquirypassword")
+	public ModelAndView inquiryPassword() {
+		ModelAndView mv = new ModelAndView("InquiryPassword");
+		return mv;
+	}
+	
 	@GetMapping("signup")
 	public ModelAndView signup() {
 		ModelAndView mv = new ModelAndView("Signup");
