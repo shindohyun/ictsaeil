@@ -56,7 +56,7 @@
 			<td><p class="validation" id="validation-pw-re"></p></td>
 		</tr>
 		<tr>
-			<td><button id="reset" disabled>비밀번호 재설정</button></td>
+			<td><button id="reset" onclick="onClickReset()" disabled>비밀번호 재설정</button></td>
 		</tr>
 	</table>
 </div>
@@ -129,5 +129,37 @@ function changeResetStatus(){
 	}
 	
 	$('#reset').attr('disabled', false)
+}
+
+function onClickReset(){
+	const id = $('#id').val()
+	const pw = $('#pw').val()
+	
+	var data = {
+		id: id,
+		password: pw
+	}
+	
+	$.ajax({
+		type: 'POST',
+		url: '/api/inquirypassword',
+		data: JSON.stringify(data),
+		contentType: 'application/json; charset=utf-8',
+		contentLength: JSON.stringify(data).length,
+		success: function(data, status, xhr){
+			if(status === 'success'){
+				alert('비밀번호가 재설정 되었습니다.')
+				location.href='/signin'
+			}
+		},
+		error: function(xhr, status, error){
+			if(xhr.status === 404){
+				alert(xhr.responseText)	
+			}
+			else{
+				alert('서버와의 통신 중 문제가 발생했습니다.(error code: ' + xhr.status + ', message: ' + xhr.responseText + ')')	
+			}
+		}
+	})
 }
 </script>

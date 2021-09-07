@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ictsaeil.sample.model.User;
 import com.ictsaeil.sample.payload.RequestInquiryId;
+import com.ictsaeil.sample.payload.RequestInquiryPassword;
 import com.ictsaeil.sample.payload.RequestSignin;
 import com.ictsaeil.sample.payload.RequestUser;
 import com.ictsaeil.sample.service.UserService;
@@ -36,6 +37,21 @@ public class ApiController {
 	
 	@Autowired
 	UserService userService;
+	
+	@PostMapping("/inquirypassword")
+	public ResponseEntity inquiryPassword(@RequestBody RequestInquiryPassword request) {
+		try {
+			int updatedCount = userService.inquiryPassword(request.getId(), request.getPassword());	
+			if(updatedCount == 0) {
+				return new ResponseEntity<>("회원 정보를 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
+			}
+			
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch(Exception e) {
+			logger.error(e.getMessage());
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	@PostMapping("/inquiryid")
 	public ResponseEntity inquiryId(@RequestBody RequestInquiryId request) {

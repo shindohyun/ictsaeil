@@ -25,6 +25,14 @@ public class UserService {
 		return userMapper.selectIdByNameAndMobile(paramMap);
 	}
 	
+	public int inquiryPassword(String id, String password) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("ID", id);
+		paramMap.put("PASSWORD", password);
+		
+		return userMapper.updatePassword(paramMap);
+	}
+	
 	public User signinBySession(String session) {
 		User user = null;
 		

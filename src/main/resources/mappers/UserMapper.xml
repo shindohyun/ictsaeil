@@ -83,4 +83,12 @@
 			AND `MOBILE`=#{MOBILE}
 		LIMIT 1
 	</select>
+	<update id="updatePassword" parameterType="map">
+		UPDATE 
+			`user`
+		SET
+			`PASSWORD`=#{PASSWORD}
+		WHERE
+			`ID`=#{ID}
+	</update>
 </mapper>
