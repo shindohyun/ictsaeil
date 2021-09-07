@@ -18,11 +18,13 @@ public class UserService {
 	UserMapper userMapper;
 	
 	public User signinBySession(String session) {
-		User user = new User();
+		User user = null;
 		
 		HashMap<String, Object> map = (HashMap<String, Object>) userMapper.selectBySession(session);
 		
 		if(map != null) {
+			user = new User();
+			
 			if(map.containsKey("IDX")) {
 				user.setIdx(Integer.parseInt(map.get("IDX").toString()));	
 			}
@@ -65,7 +67,7 @@ public class UserService {
 	}
 	
 	public User signin(String username, String password) {
-		User user = new User();
+		User user = null;
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("ID", username);
@@ -73,6 +75,8 @@ public class UserService {
 		
 		Map<String, Object> map = userMapper.selectByIdAndPassword(paramMap);
 		if(map != null) {
+			user = new User();
+			
 			if(map.containsKey("IDX")) {
 				user.setIdx(Integer.parseInt(map.get("IDX").toString()));	
 			}
