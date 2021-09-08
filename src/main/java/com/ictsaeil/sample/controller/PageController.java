@@ -128,9 +128,6 @@ public class PageController {
 		User user = (User)session.getAttribute("USER");
 		mv.addObject("user", user);	
 		
-		List<Map<String, Object>> products = productService.products(); 
-	    mv.addObject("products", products);
-		
 		return mv;
 	}
 	
