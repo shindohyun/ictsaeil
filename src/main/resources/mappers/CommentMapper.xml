@@ -14,13 +14,16 @@
 	</insert>
 	<select id="select" resultType="map">
 		SELECT
-			`IDX`,
-			`PRODUCT_IDX`,
-			`USER_IDX`,
-			`COMMENT`,
-			DATE_FORMAT(`DATE`, '%Y-%m-%d %H:%i:%s') AS `DATE`
+			A.`IDX`,
+			A.`PRODUCT_IDX`,
+			A.`USER_IDX`,
+			A.`COMMENT`,
+			DATE_FORMAT(A.`DATE`, '%Y-%m-%d %H:%i:%s') AS `DATE`,
+			B.`ID`
 		FROM
-			`comment`
+			`comment` as A
+			INNER JOIN `user` as B
+			ON A.`USER_IDX`=B.`IDX`
 		ORDER BY 
 			`DATE` DESC
 	</select>
