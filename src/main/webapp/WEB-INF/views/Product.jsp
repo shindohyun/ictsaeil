@@ -249,8 +249,7 @@ function onClickSave(){
 		success: function(data, status, xhr){
 			if(status === 'success'){
 				alert(data)
-				$('#comment').val('')
-				$('#current-length').text("0/500")
+				location.reload()
 			}
 			else{
 				alert('댓글 저장을 실패했습니다.')
