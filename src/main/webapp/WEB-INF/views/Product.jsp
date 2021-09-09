@@ -193,11 +193,11 @@ function onClickSave(){
 			}
 		},
 		error: function(xhr, status, error){
-			if(status === '403'){
-				alert(error)
+			if(xhr.status === 403){
+				alert(xhr.responseText)	
 			}
 			else{
-				alert('서버와의 통신 중 문제가 발생했습니다.(error code: ' + status + ', message: ' + error + ')')
+				alert('서버와의 통신 중 문제가 발생했습니다.(error code: ' + xhr.status + ', message: ' + xhr.responseText + ')')	
 			}
 		}
 	})
