@@ -12,4 +12,16 @@
 			#{COMMENT}
 		)
 	</insert>
+	<select id="select" resultType="map">
+		SELECT
+			`IDX`,
+			`PRODUCT_IDX`,
+			`USER_IDX`,
+			`COMMENT`,
+			DATE_FORMAT(`DATE`, '%Y-%m-%d %H:%i:%s') AS `DATE`
+		FROM
+			`comment`
+		ORDER BY 
+			`DATE` DESC
+	</select>
 </mapper>

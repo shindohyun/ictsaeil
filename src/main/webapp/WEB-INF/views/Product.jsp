@@ -159,6 +159,25 @@ float:right;
 <script>
 const productIdx = 53 // 현재 상품의 IDX 값 (가데이터)
 
+window.onload = function(){
+	$.ajax({
+		type: 'GET',
+		url: '/api/comments',
+		dataType: 'json',
+		success: function(data, status, xhr){
+			if(status === 'success'){
+				console.log(data)
+			}
+			else{
+				alert('댓글 목록 조회를 실패했습니다.')
+			}
+		},
+		error: function(xhr, status, error){
+			alert('서버와의 통신 중 문제가 발생했습니다.(error code: ' + xhr.status + ', message: ' + xhr.responseText + ')')	
+		}
+	})
+}
+
 function onInputComment(value){
 	$('#current-length').text(value.length+"/500")
 }

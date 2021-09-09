@@ -1,6 +1,7 @@
 package com.ictsaeil.sample.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -42,6 +43,18 @@ public class ApiController {
 	
 	@Autowired
 	CommentService commentService;
+	
+	@GetMapping("comments")
+	public ResponseEntity comments() {
+		try {
+			List<Map<String, Object>> comments = commentService.select();
+			return new ResponseEntity<>(comments, HttpStatus.OK);
+		}
+		catch(Exception e) {
+			logger.error(e.getMessage());
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	@PostMapping("comment/add")
 	public ResponseEntity addComment(@RequestBody RequestCommentAdd request, HttpSession session) {
