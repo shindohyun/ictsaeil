@@ -24,10 +24,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ictsaeil.sample.model.User;
+import com.ictsaeil.sample.payload.RequestCommentAdd;
 import com.ictsaeil.sample.payload.RequestInquiryId;
 import com.ictsaeil.sample.payload.RequestInquiryPassword;
 import com.ictsaeil.sample.payload.RequestSignin;
 import com.ictsaeil.sample.payload.RequestUser;
+import com.ictsaeil.sample.service.CommentService;
 import com.ictsaeil.sample.service.UserService;
 
 @RestController
@@ -37,6 +39,25 @@ public class ApiController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	CommentService commentService;
+	
+	@PostMapping("comment/add")
+	public ResponseEntity addComment(@RequestBody RequestCommentAdd request, HttpSession session) {
+		User user = (User)session.getAttribute("USER");
+		if(user == null) {
+			return new ResponseEntity<>("로그인이 필요합니다.", HttpStatus.FORBIDDEN);
+		}
+		
+		try {
+			int insertedCount = commentService.insert(request.getProductIdx(), user.getIdx(), request.getComment());
+			return new ResponseEntity<>("저장되었습니다.", HttpStatus.OK);
+		} catch(Exception e) {
+			logger.error(e.getMessage());
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	@PostMapping("/inquirypassword")
 	public ResponseEntity inquiryPassword(@RequestBody RequestInquiryPassword request) {

@@ -133,9 +133,9 @@ float:right;
 	
 	<div class="comment-wrap">
 		<h2>댓글</h2>
-		<textarea placeholder="댓글을 입력해주세요.(최대 500자)" maxlength="500" oninput="onInputComment(value)"></textarea>
+		<textarea id='comment' placeholder="댓글을 입력해주세요.(최대 500자)" maxlength="500" oninput="onInputComment(value)"></textarea>
 		<p id="current-length">0/500</p>
-		<button>저장</button>
+		<button onclick="onClickSave()">저장</button>
 	</div>
 	
 	<div class="comment-list">
@@ -157,7 +157,49 @@ float:right;
 </div>
 
 <script>
+const productIdx = 53 // 현재 상품의 IDX 값 (가데이터)
+
 function onInputComment(value){
 	$('#current-length').text(value.length+"/500")
+}
+
+function onClickSave(){
+	const comment = $('#comment').val()
+	
+	if(comment === ''){
+		alert('내용을 입력해주세요.')
+		return
+	}
+	
+	var data = {
+		productIdx: productIdx,
+		comment: comment
+	}
+	
+	$.ajax({
+		type: 'POST',
+		url: '/api/comment/add',
+		data: JSON.stringify(data),
+		contentType: 'application/json; charset=utf-8',
+		contentLength: JSON.stringify(data).length,
+		success: function(data, status, xhr){
+			if(status === 'success'){
+				alert(data)
+				$('#comment').val('')
+				$('#current-length').text("0/500")
+			}
+			else{
+				alert('댓글 저장을 실패했습니다.')
+			}
+		},
+		error: function(xhr, status, error){
+			if(status === '403'){
+				alert(error)
+			}
+			else{
+				alert('서버와의 통신 중 문제가 발생했습니다.(error code: ' + status + ', message: ' + error + ')')
+			}
+		}
+	})
 }
 </script>
