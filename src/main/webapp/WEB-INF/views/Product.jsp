@@ -65,6 +65,7 @@
  background: #f7f7f7;
  padding:10px;
  cursor:pointer;
+ margin-top:2px;
 }
 .comment-item:hover{
  background: #f3f3f3;
@@ -138,19 +139,20 @@ float:right;
 		<button onclick="onClickSave()">저장</button>
 	</div>
 	
-	<div class="comment-list">
-		<div class="comment-item">
+	<div class="comment-list" id="comment-list">
+		<div class="comment-item" id="comment-item">
 			<div>
 				<table>
 					<tr>
+						<td hidden><label class="comment-idx"></label></td>
 						<td><label class="comment-id">id</label></td>
-					 	<td style="width:20%;"><label class="comment-date">date</label></td>
+					 	<td style="width:30%;"><label class="comment-date">date</label></td>
 					 	<td style="width:10%;"><button class="comment-delete">삭제</button></td>
 					</tr>
 				</table>
 			</div>
 			<div>
-				<input value="commentcommentcommentcommentcommentcommentcommentcommentcommentcommentcommentcomment" readonly>
+				<input class="comment-contents" readonly>
 			</div>
 		</div>
 	</div>
@@ -166,11 +168,54 @@ window.onload = function(){
 		dataType: 'json',
 		success: function(data, status, xhr){
 			if(status === 'success'){
-				console.log(data)
+				var item = document.getElementById('comment-item')
+				
+				// 리스트 초기화
+				var list = document.getElementById('comment-list')
+				list.innerHTML = ''
+				
+				// 아이템 추가
+				for(var i = 0; i < data.length; i++){
+					var comment = data[i]
+					
+					// 아이템에 데이터 넣기
+					var clone = item.cloneNode(true)
+					clone.style.display = 'block'
+					clone.id = 'commnet-item-' + i
+					
+					clone.getElementsByClassName('comment-idx')[0].id = 'comment-idx-'+i
+					clone.getElementsByClassName('comment-idx')[0].innerHTML = comment.IDX
+					
+					clone.getElementsByClassName('comment-id')[0].id = 'comment-id-'+i
+					clone.getElementsByClassName('comment-id')[0].innerHTML = comment.ID
+					
+					clone.getElementsByClassName('comment-date')[0].id = 'comment-date-'+i
+					clone.getElementsByClassName('comment-date')[0].innerHTML = comment.DATE
+					
+					clone.getElementsByClassName('comment-contents')[0].id = 'comment-contents-'+i
+					clone.getElementsByClassName('comment-contents')[0].value = comment.COMMENT
+					
+					clone.getElementsByClassName('comment-delete')[0].id = 'comment-delete-'+i
+					clone.getElementsByClassName('comment-delete')[0].addEventListener('click', function(event){
+						var index = this.id.split(/[-]+/).pop()
+						var idx = document.getElementById('comment-idx-'+index).innerHTML
+						
+						console.log('delete comment idx: ' + idx)
+						
+						event.stopPropagation() // 이벤트를 전파하지 않음
+					})
+					
+					clone.addEventListener('click', function(event){
+						var index = this.id.split(/[-]+/).pop()
+						alert(document.getElementById('comment-contents-'+index).value)
+					})
+
+					list.appendChild(clone)
+				}
 			}
 			else{
 				alert('댓글 목록 조회를 실패했습니다.')
-			}
+			} 
 		},
 		error: function(xhr, status, error){
 			alert('서버와의 통신 중 문제가 발생했습니다.(error code: ' + xhr.status + ', message: ' + xhr.responseText + ')')	
