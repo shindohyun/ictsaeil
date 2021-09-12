@@ -27,4 +27,9 @@
 		ORDER BY 
 			`DATE` DESC
 	</select>
+	<delete id="delete" parameterType="int">
+		DELETE FROM `comment`
+		WHERE
+			`IDX`=#{IDX}
+	</delete>
 </mapper>

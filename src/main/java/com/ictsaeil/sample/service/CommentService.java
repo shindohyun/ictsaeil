@@ -27,4 +27,8 @@ public class CommentService {
 	public List<Map<String, Object>> select() {
 		return commentMapper.select();
 	}
+	
+	public int delete(int idx) {
+		return commentMapper.delete(idx);
+	}
 }

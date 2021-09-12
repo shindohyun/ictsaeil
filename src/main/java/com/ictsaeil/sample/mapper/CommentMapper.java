@@ -9,4 +9,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface CommentMapper {
 	public int insert(Map<String, Object> paramMap);
 	public List<Map<String, Object>> select();
+	public int delete(int idx);
 }

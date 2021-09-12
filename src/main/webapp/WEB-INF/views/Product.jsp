@@ -145,6 +145,7 @@ float:right;
 				<table>
 					<tr>
 						<td hidden><label class="comment-idx"></label></td>
+						<td hidden><label class="comment-user-idx"></label></td>
 						<td><label class="comment-id">id</label></td>
 					 	<td style="width:30%;"><label class="comment-date">date</label></td>
 					 	<td style="width:10%;"><button class="comment-delete">삭제</button></td>
@@ -161,7 +162,7 @@ float:right;
 <script>
 const productIdx = 53 // 현재 상품의 IDX 값 (가데이터)
 
-window.onload = function(){
+$(document).ready(function(){
 	$.ajax({
 		type: 'GET',
 		url: '/api/comments',
@@ -186,6 +187,9 @@ window.onload = function(){
 					clone.getElementsByClassName('comment-idx')[0].id = 'comment-idx-'+i
 					clone.getElementsByClassName('comment-idx')[0].innerHTML = comment.IDX
 					
+					clone.getElementsByClassName('comment-user-idx')[0].id = 'comment-user-idx-'+i
+					clone.getElementsByClassName('comment-user-idx')[0].innerHTML = comment.USER_IDX
+					
 					clone.getElementsByClassName('comment-id')[0].id = 'comment-id-'+i
 					clone.getElementsByClassName('comment-id')[0].innerHTML = comment.ID
 					
@@ -199,8 +203,9 @@ window.onload = function(){
 					clone.getElementsByClassName('comment-delete')[0].addEventListener('click', function(event){
 						var index = this.id.split(/[-]+/).pop()
 						var idx = document.getElementById('comment-idx-'+index).innerHTML
+						var ownerIdx = document.getElementById('comment-user-idx-'+index).innerHTML
 						
-						console.log('delete comment idx: ' + idx)
+						onClickDelete(idx, ownerIdx)
 						
 						event.stopPropagation() // 이벤트를 전파하지 않음
 					})
@@ -221,10 +226,42 @@ window.onload = function(){
 			alert('서버와의 통신 중 문제가 발생했습니다.(error code: ' + xhr.status + ', message: ' + xhr.responseText + ')')	
 		}
 	})
-}
+})
 
 function onInputComment(value){
 	$('#current-length').text(value.length+"/500")
+}
+
+function onClickDelete(idx, ownerIdx){
+	var data = {
+		commentIdx: idx,
+		commentOwnerIdx: ownerIdx
+	}
+	
+	$.ajax({
+		type: 'POST',
+		url: '/api/comment/delete',
+		data: JSON.stringify(data),
+		contentType: 'application/json; charset=utf-8',
+		contentLength: JSON.stringify(data).length,
+		success: function(data, status, xhr){
+			if(status === 'success'){
+				alert(data)
+				location.reload()
+			}
+			else{
+				alert('댓글 저장을 실패했습니다.')
+			}
+		},
+		error: function(xhr, status, error){
+			if(xhr.status === 403 || xhr.status === 404){
+				alert(xhr.responseText)	
+			}
+			else{
+				alert('서버와의 통신 중 문제가 발생했습니다.(error code: ' + xhr.status + ', message: ' + xhr.responseText + ')')	
+			}
+		}
+	})
 }
 
 function onClickSave(){
