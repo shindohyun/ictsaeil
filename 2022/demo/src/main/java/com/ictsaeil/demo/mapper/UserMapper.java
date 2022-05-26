@@ -6,8 +6,8 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface ProductMapper {
-	
-	public List<Map<String, Object>> selectByName(String name);
+public interface UserMapper {
+
+	public List<Map<String, Object>> selectByNameAndAge(Map<String, Object> paramMap);
 	
 }
