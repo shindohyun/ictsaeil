@@ -32,4 +32,19 @@ public class MainController {
 		return mv;
 	}
 	
+	@GetMapping("/my-page")
+	public String myPage() {
+		return "MyPage";
+	}
+	
+	@GetMapping("/signin")
+	public String Signin() {
+		return "Signin";
+	}
+	
+	@GetMapping("/signup")
+	public String Signup() {
+		return "Signup";
+	}
+	
 }
