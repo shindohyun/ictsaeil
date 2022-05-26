@@ -32,10 +32,10 @@ public class MainController {
 	}
 	
 	@GetMapping("product")
-	public ModelAndView product(@RequestParam String name) {
+	public ModelAndView product() {
 		ModelAndView mv = new ModelAndView("Product");
 		
-		List<Map<String, Object>> products = productService.searchByName(name);
+		List<Map<String, Object>> products = productService.search();
 		mv.addObject("products", products);
 		
 		return mv;

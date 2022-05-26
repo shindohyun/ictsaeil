@@ -14,6 +14,25 @@ public class ProductService {
 	@Autowired
 	ProductMapper productMapper;
 	
+	public List<Map<String, Object>> search() {
+		List<Map<String, Object>> products = productMapper.select();
+		
+		for(Map<String, Object> product : products) {
+			int stock = (int)product.get("STOCK");
+			
+			String status = "";
+			if(stock > 0 && stock <= 100) {
+				status = "품절임박";
+			} else if(stock == 0) {
+				status = "품절";
+			}
+			
+			product.put("STATUS", status);
+		}
+		
+		return products;
+	}
+	
 	public List<Map<String, Object>> searchByName(String name) {
 		List<Map<String, Object>> products = productMapper.selectByName(name);
 		
