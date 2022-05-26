@@ -6,23 +6,25 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ictsaeil.demo.service.ProductService;
 
 @Controller
+@RequestMapping("/")
 public class MainController {
 	
 	@Autowired
 	ProductService productService;
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public String main() {
 		return "Main";
 	}
 	
-	@GetMapping("/product")
+	@GetMapping("product")
 	public ModelAndView product(@RequestParam String name) {
 		ModelAndView mv = new ModelAndView("Product");
 		
@@ -32,17 +34,17 @@ public class MainController {
 		return mv;
 	}
 	
-	@GetMapping("/my-page")
+	@GetMapping("my-page")
 	public String myPage() {
 		return "MyPage";
 	}
 	
-	@GetMapping("/signin")
+	@GetMapping("signin")
 	public String Signin() {
 		return "Signin";
 	}
 	
-	@GetMapping("/signup")
+	@GetMapping("signup")
 	public String Signup() {
 		return "Signup";
 	}
