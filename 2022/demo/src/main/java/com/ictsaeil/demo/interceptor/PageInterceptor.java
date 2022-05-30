@@ -1,4 +1,4 @@
-package com.ictsaeil.demo.config;
+package com.ictsaeil.demo.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
