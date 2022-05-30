@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		function searchMember() {
 			const name = document.getElementById("name").value;
@@ -33,6 +34,46 @@
 			document.body.appendChild(form);
 			form.submit();
 		}
+		
+		function callRestApi() {
+			$.ajax({
+				type: 'GET',
+				url: '/api/users',
+				success: function(data, status, xhr) {
+					console.log('data: ' + data + ", status: " + status);
+					console.log(xhr);
+				},
+				error: function(xhr, status, error) {
+					console.log('error!');
+				},
+				complete: function(xhr, status) {
+					console.log('complete!');
+				}
+			});
+			
+			/*
+			const data = {
+					name: '김현아'
+			}
+			
+			$.ajax({
+				type: 'POST',
+				url: '/api/user',
+				data: JSON.stringify(data),
+				contentType: 'application/json; charset=utf-8',
+				contentLength: JSON.stringify(data).length,
+				success: function(data, status, xhr) {
+					console.log('success!');
+				},
+				error: function(xhr, status, error) {
+					console.log('error!');
+				},
+				complete: function(xhr, status) {
+					console.log('complete!');
+				}
+			});
+			*/
+		}
 	</script>
 </head>
 <body>
@@ -47,5 +88,7 @@
 		<input type="text" name="age" placeholder="age"/>
 		<input type="submit" value="Search Member"/>
 	</form>
+	----------------------<br>
+	<button onclick="callRestApi()">Call REST API</button>
 </body>
 </html>
