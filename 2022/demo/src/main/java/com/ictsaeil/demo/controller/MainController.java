@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +36,23 @@ public class MainController {
 	public ModelAndView product() {
 		ModelAndView mv = new ModelAndView("Product");
 		
+		System.out.println("MainController: before productService.search");
 		List<Map<String, Object>> products = productService.search();
+		System.out.println("MainController: after productService.search");
+		
+		mv.addObject("products", products);
+		
+		return mv;
+	}
+	
+	@GetMapping("productByName")
+	public ModelAndView product(@RequestParam String name) {
+		ModelAndView mv = new ModelAndView("Product");
+		
+		System.out.println("MainController: before productService.search");
+		List<Map<String, Object>> products = productService.searchByName(name);
+		System.out.println("MainController: after productService.search");
+		
 		mv.addObject("products", products);
 		
 		return mv;
