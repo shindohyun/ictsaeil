@@ -2,10 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script defer>
 		const auth = true;
 		
 		window.onload = function(){
+			var locale = getCookie("locale");
+			$("#select_locale").val(locale).prop("selected", true);
+			
 			if(auth){
 				$('.beforeAuth').show();
 				$('.afterAuth').hide();
@@ -30,6 +34,20 @@
 	
 		function myPage(){
 			location.href="/my-page";
+		}
+		
+		function getCookie(key) {
+			var value = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+			return value? value[2] : null;
+		}
+		
+		function setCookie(key, value) {
+			document.cookie = key + '=' + value + '; path=/';
+		}
+		
+		function onChangeLocale(value) {
+			setCookie('locale', value);
+			location.reload();
 		}
 	</script>
 	<style type="text/css">
@@ -94,6 +112,12 @@
 	<header>
 		<h1>여성새로일하기센터 미래 ICT융합 직업교육 Spring 강의</h1>
 		<div class="menu">
+			<select id="select_locale" onchange="onChangeLocale(this.value)">
+				<option value="ko">한국어</option>
+				<option value="en">영어</option>
+				<option value="zh">중국어</option>
+				<option value="ja">일본어</option>
+			</select>
 			<button class="beforeAuth white-button" onclick="signup()">Signup</button>
 			<button class="beforeAuth green-button" onclick="signin()">Signin</button>
 			<button class="afterAuth white-button" onclick="myPage()">My Page</button>
