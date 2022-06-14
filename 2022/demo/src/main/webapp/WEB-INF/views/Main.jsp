@@ -4,6 +4,7 @@
 <html>
 <head>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="/js/validate.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		function searchMember() {
 			const name = document.getElementById("name").value;
@@ -75,6 +76,92 @@
 			});
 			*/
 		}
+		
+		function checkRegExp(){
+			const regex = new RegExp($("#regex").val());
+			const test = $("#regex-test").val();
+			
+			if(regex.test(test)) {
+				alert("success!");
+			} else {
+				alert("fail!");
+			}
+		}
+		
+		function onClickValidateId() {
+			const id = $("#validate-id").val();
+			
+			if(isEmpty(id)) {
+				alert("값을 입력해주세요.");
+				return;
+			}
+			
+			if(validateId(id)) {
+				alert("성공!");
+			} else {
+				alert("아이디 형식이 아닙니다.");
+			}
+		}
+		
+		function onClickValidatePassword() {
+			const password = $("#validate-password").val();
+			
+			if(isEmpty(password)) {
+				alert("값을 입력해주세요.");
+				return;
+			}
+			
+			if(validatePassword(password)) {
+				alert("성공!");
+			} else {
+				alert("비밀번호 형식이 아닙니다.");
+			}
+		}
+		
+		function onClickValidateName() {
+			const name = $("#validate-name").val();
+			
+			if(isEmpty(name)) {
+				alert("값을 입력해주세요.");
+				return;
+			}
+			
+			if(validateName(name)) {
+				alert("성공!");
+			} else {
+				alert("이름 형식이 아닙니다.");
+			}
+		}
+		
+		function onClickValidateEmail() {
+			const email = $("#validate-email").val();
+			
+			if(isEmpty(email)) {
+				alert("값을 입력해주세요.");
+				return;
+			}
+			
+			if(validateEmail(email)) {
+				alert("성공!");
+			} else {
+				alert("이메일 형식이 아닙니다.");
+			}
+		}
+		
+		function onClickValidateMobile() {
+			const mobile = $("#validate-mobile").val();
+			
+			if(isEmpty(mobile)) {
+				alert("값을 입력해주세요.");
+				return;
+			}
+			
+			if(validateMobile(mobile)) {
+				alert("성공!");
+			} else {
+				alert("전화번호 형식이 아닙니다.");
+			}
+		}
 	</script>
 </head>
 <body>
@@ -102,5 +189,17 @@
 	</form>
 	----------------------<br>
 	<button onclick="callRestApi()">Call REST API</button>
+	----------------------<br>
+	/<input type="text" id="regex" placeholder="reg exp">/
+	<br>
+	<input type="text" id="regex-test" placeholder="test">
+	<br>
+	<button onclick="checkRegExp()">check</button>
+	<br>
+	<input type="text" id="validate-id"><button onclick="onClickValidateId()">validate id</button><br>
+	<input type="text" id="validate-password"><button onclick="onClickValidatePassword()">validate password</button><br>
+	<input type="text" id="validate-name"><button onclick="onClickValidateName()">validate name</button><br>
+	<input type="text" id="validate-email"><button onclick="onClickValidateEmail()">validate email</button><br>
+	<input type="text" id="validate-mobile"><button onclick="onClickValidateMobile()">validate mobile</button><br>
 </body>
 </html>
