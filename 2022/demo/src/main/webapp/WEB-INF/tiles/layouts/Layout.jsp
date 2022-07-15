@@ -22,8 +22,8 @@
 			min-height: 100%;
 		}
 		.contents {
-			width: min-content;
- 			margin: auto;
+ 			margin: 20px;
+ 			width: 100%;
 		}
 	</style>
 </head>
