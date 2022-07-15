@@ -16,7 +16,7 @@ function isEmpty(value) {
  * @returns 조건을 충족하면 true, 아니면 false
  */
 function validateId(value) {
-	const regex = /^[a-zA-Z0-9_]{4,12}$/;
+	const regex = /^[a-zA-Z0-9_]{4,12}$/g;
 	return regex.test(value);
 }
 
