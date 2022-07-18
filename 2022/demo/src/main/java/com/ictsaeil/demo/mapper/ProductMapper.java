@@ -10,4 +10,7 @@ public interface ProductMapper {
 	
 	public List<Map<String, Object>> select();
 	public List<Map<String, Object>> selectByName(String name);
+	public int insert(Map<String, Object> paramMap);
+	public int delete(Map<String, Object> paramMap);
+	
 }

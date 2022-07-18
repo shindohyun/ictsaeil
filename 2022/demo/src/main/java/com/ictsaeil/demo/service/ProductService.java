@@ -1,5 +1,6 @@
 package com.ictsaeil.demo.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -63,4 +64,28 @@ public class ProductService {
 		return products;
 	}
 	
+	
+	public boolean save(String name, int price, int stock) {
+		HashMap<String, Object> paramMap = new HashMap<>();
+		paramMap.put("NAME", name);
+		paramMap.put("PRICE", price);
+		paramMap.put("STOCK", stock);
+		
+		if(productMapper.insert(paramMap) > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean remove(List<Integer> idxList) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("IDX_LIST", idxList);
+		
+		if(productMapper.delete(paramMap) > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

@@ -16,4 +16,25 @@
 		WHERE
 			`NAME`=#{name}
 	</select>
+	
+	<insert id="insert" parameterType="map">
+		INSERT INTO `product` (
+			`NAME`,
+			`PRICE`,
+			`STOCK`
+		) values (
+			#{NAME},
+			#{PRICE},
+			#{STOCK}
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="map">
+		DELETE FROM `product`
+		WHERE
+			`IDX` IN
+			<foreach collection="IDX_LIST" item="item" index="index" separator="," open="(" close=")"> 
+				#{item}
+			</foreach> 
+	</delete>
 </mapper>

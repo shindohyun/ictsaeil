@@ -1,5 +1,8 @@
 package com.ictsaeil.demo.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -14,11 +17,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ictsaeil.demo.dto.MemberRequestDto;
 import com.ictsaeil.demo.service.ProductService;
 import com.ictsaeil.demo.service.UserService;
+import com.mysql.cj.xdevapi.JsonArray;
 
 @Controller
 @RequestMapping("/")
@@ -52,29 +57,53 @@ public class MainController {
 	}
 	
 	@GetMapping("product")
-	public ModelAndView product() {
+	public ModelAndView product( String name) {
 		ModelAndView mv = new ModelAndView("Product");
-		
-		System.out.println("MainController: before productService.search");
-		List<Map<String, Object>> products = productService.search();
-		System.out.println("MainController: after productService.search");
-		
-		mv.addObject("products", products);
-		
 		return mv;
 	}
 	
-	@GetMapping("productByName")
-	public ModelAndView product(@RequestParam String name) {
-		ModelAndView mv = new ModelAndView("Product");
+	@PostMapping("product/search")
+	@ResponseBody
+	public Map<String, Object> searchProduct(@RequestParam(required=false) String name) {
+		Map<String, Object> result = new HashMap<String, Object>();
 		
-		System.out.println("MainController: before productService.search");
-		List<Map<String, Object>> products = productService.searchByName(name);
-		System.out.println("MainController: after productService.search");
+		List<Map<String, Object>> products = null;
+		if(name == null || name.isEmpty()) {			
+			products = productService.search();
+		} else {
+			products = productService.searchByName(name);
+		}
 		
-		mv.addObject("products", products);
+		result.put("searchName", name);
+		result.put("products", products);
+		return result;
+	}
+	
+	@GetMapping("product/add")
+	public String addProduct() {
+		return "AddProduct";
+	}
+	
+	@PostMapping("/product/save")
+	@ResponseBody
+	public boolean saveProduct(@RequestParam String name, @RequestParam int price, @RequestParam int stock) {
+		return productService.save(name, price, stock);
+	}
+	
+	@GetMapping("/product/remove")
+	@ResponseBody
+	public boolean removeProduct(@RequestParam String idxListStr) {
+		idxListStr = idxListStr.substring(1, idxListStr.length()-2);
+		idxListStr = idxListStr.replace("\"", "");
+		String[] toks = idxListStr.split(",");
+		List<String> tempList = Arrays.asList(toks);
+		List<Integer> idxList = new ArrayList<Integer>();
 		
-		return mv;
+		for(String temp : tempList) {
+			idxList.add(Integer.parseInt(temp));
+		}
+		
+		return productService.remove(idxList);
 	}
 	
 	@GetMapping("my-page")
@@ -131,4 +160,5 @@ public class MainController {
 		
 		return mv;
 	}
+	
 }
