@@ -7,9 +7,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,14 +25,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ictsaeil.demo.dto.MemberRequestDto;
+import com.ictsaeil.demo.dto.SignupRequestDto;
 import com.ictsaeil.demo.service.ProductService;
 import com.ictsaeil.demo.service.UserService;
-import com.mysql.cj.xdevapi.JsonArray;
 
 @Controller
 @RequestMapping("/")
 public class MainController {
-	
+	private static final Logger logger = LogManager.getLogger(MainController.class);
+
 	@Autowired
 	MessageSource messageSource;
 	
@@ -161,4 +166,29 @@ public class MainController {
 		return mv;
 	}
 	
+	@PostMapping("signup-result")
+	public ModelAndView signupResult(@ModelAttribute SignupRequestDto request) {
+		ModelAndView mv = new ModelAndView("SignupResult");
+		
+		try {
+			userService.signup(request);
+			mv.addObject("message", "회원가입 완료");
+		}catch (Exception e) {
+			e.printStackTrace();
+			mv.addObject("message", "회원가입 실패");
+		}
+		return mv;
+	}
+	
+	@GetMapping("duplication-check/{id}")
+	@ResponseBody
+	public ResponseEntity duplicationCheckId(@PathVariable("id") String id) {
+		try {
+			Map<String, Object> body = userService.duplicationCheckId(id);
+			return new ResponseEntity<>(body, HttpStatus.OK);
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }

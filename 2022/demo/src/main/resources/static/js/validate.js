@@ -4,7 +4,7 @@
  */
 function isEmpty(value) {
 	if(value === '') {
-		return ture;
+		return true;
 	} else {
 		return false;
 	}
